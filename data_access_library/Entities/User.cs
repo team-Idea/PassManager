@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClientApp
+namespace data_access_library
 {
     public partial class PasswordManagerDbContext
     {

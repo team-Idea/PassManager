@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using static ClientApp.PasswordManagerDbContext;
+using static data_access_library.PasswordManagerDbContext;
 
-namespace ClientApp.Helpers.Config
+namespace data_access_library.Helpers.Config
 {
     internal class ItemConfig : IEntityTypeConfiguration<Item>
     {

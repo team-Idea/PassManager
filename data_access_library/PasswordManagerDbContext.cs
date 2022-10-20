@@ -1,4 +1,4 @@
-﻿using ClientApp.Helpers.Config;
+﻿using data_access_library.Helpers.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,8 @@ using System.Security.Principal;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Controls.Primitives;
 
-namespace ClientApp
+namespace data_access_library
 {
     public partial class PasswordManagerDbContext : DbContext
     {
