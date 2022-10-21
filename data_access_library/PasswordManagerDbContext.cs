@@ -1,5 +1,4 @@
-﻿using data_access_library.Helpers;
-using data_access_library.Helpers.Config;
+﻿using data_access_library.Helpers.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,9 +21,7 @@ namespace data_access_library
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //MSSQLLocalDB
-            //data source needs to be changed to specific source
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=MusicDBContext;Integrated Security=true;Connect Timeout=2");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-QO1ORR9\SQLEXPRESS01;Initial Catalog=MusicDBContext;Integrated Security=true;Connect Timeout=2");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,11 +29,11 @@ namespace data_access_library
 
             modelBuilder.ApplyConfiguration(new CategoryConfig());
             modelBuilder.ApplyConfiguration(new ItemConfig());
-            modelBuilder.ApplyConfiguration(new UserConfig());  
-            
-            modelBuilder.SeedCategories();
-            modelBuilder.SeedItems();
-            modelBuilder.SeedUsers();
+            modelBuilder.ApplyConfiguration(new UserConfig());
+
+            //modelBuilder.SeedCategories();
+            //modelBuilder.SeedItems();
+            //modelBuilder.SeedUsers();
         }
 
         //Collections
