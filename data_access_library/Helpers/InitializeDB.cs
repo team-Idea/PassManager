@@ -22,7 +22,7 @@ namespace data_access_library.Helpers
                 },
                 new Category
                 {
-                   Id = 1,
+                   Id = 3,
                    Name = "Credit card"
                 }
             });
@@ -54,7 +54,7 @@ namespace data_access_library.Helpers
                 },
                 new Item
                 {
-                   Id = 1,
+                   Id = 3,
                    Name = "Card1",
                    SavedLogin = "CardNum1",
                    SavedPass = "Svv1",
