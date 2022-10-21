@@ -31,17 +31,22 @@ namespace data_access_library
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new ItemConfig());
-            modelBuilder.ApplyConfiguration(new UserConfig());  
-            
-            modelBuilder.SeedCategories();
-            modelBuilder.SeedItems();
-            modelBuilder.SeedUsers();
+            modelBuilder.ApplyConfiguration(new ElementConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new CardConfig());
+            modelBuilder.ApplyConfiguration(new InfoConfig());
+            modelBuilder.ApplyConfiguration(new LoginConfig());
+
+            //modelBuilder.SeedCategories();
+            //modelBuilder.SeedItems();
+            //modelBuilder.SeedUsers();
         }
 
         //Collections
         public DbSet<User> Users { get; set; }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Login_Item> Logins { get; set; }
+        public DbSet<Credit_Card> Cards { get; set; }
+        public DbSet<Personal_Info> Infos { get; set; }
         public DbSet<Category> Categories { get; set; }
     }
 }

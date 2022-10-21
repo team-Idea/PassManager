@@ -9,7 +9,7 @@ namespace data_access_library.Helpers.Config
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
-            builder.HasMany(c => c.Items).WithOne(i => i.Category).HasForeignKey(i => i.CategoryId);
+            builder.HasMany(c => c.Elements).WithOne(e => e.Category).HasForeignKey(e => e.CategoryId);
         }
     }
 }
