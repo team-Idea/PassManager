@@ -1,8 +1,9 @@
-﻿namespace data_access_library
+﻿
+namespace data_access_library
 {
     public partial class PasswordManagerDbContext
     {
-        public class Element
+        internal interface Element
         {
             public int Id { get; set; }
             public string Name { get; set; }

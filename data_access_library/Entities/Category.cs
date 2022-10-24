@@ -6,7 +6,9 @@
         {
             public int Id { get; set; }
             public string Name { get; set; }
-            public ICollection<Element> Elements { get; set; }
+            public ICollection<Login_Item> Logins { get; set; }
+            public ICollection<Personal_Info> Infos { get; set; }
+            public ICollection<Credit_Card> Cards { get; set; }
         }
     }
 }

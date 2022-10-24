@@ -31,7 +31,7 @@ namespace data_access_library
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new ElementConfig());
+            modelBuilder.ApplyConfiguration(new CardTypeConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new CardConfig());
             modelBuilder.ApplyConfiguration(new InfoConfig());
@@ -48,5 +48,6 @@ namespace data_access_library
         public DbSet<Credit_Card> Cards { get; set; }
         public DbSet<Personal_Info> Infos { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<CardType> CardTypes { get; set; }
     }
 }
