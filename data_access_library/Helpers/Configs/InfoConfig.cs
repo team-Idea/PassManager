@@ -9,6 +9,7 @@ namespace data_access_library.Helpers.Config
         public void Configure(EntityTypeBuilder<Personal_Info> builder)
         {
             builder.Property(pi => pi.Name).IsRequired().HasMaxLength(100);
+            builder.Property(pi => pi.IsFavourite).HasDefaultValue(false);
             builder.Property(pi => pi.FirstName).IsRequired().HasMaxLength(100);
             builder.Property(pi => pi.LastName).IsRequired().HasMaxLength(100);
             builder.Property(pi => pi.FathersName).IsRequired().HasMaxLength(100);
