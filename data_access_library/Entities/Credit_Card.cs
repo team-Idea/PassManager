@@ -1,4 +1,6 @@
-﻿namespace data_access_library
+﻿using System;
+
+namespace data_access_library
 {
     public partial class PasswordManagerDbContext
     {
@@ -16,7 +18,7 @@
             public int CartTypeId { get; set; }
             public CardType CardType { get; set; }
             public DateTime DateExpired { get; set; }
-            public int SVV { get; set; }
+            public string CVV { get; set; }
         }
     }
 }

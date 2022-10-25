@@ -14,17 +14,18 @@ namespace data_access_library
 {
     public partial class PasswordManagerDbContext : DbContext
     {
+        // Update-database -Project data_access_library
+        // Add-migration (migrationName) -Project data_access_library
         public PasswordManagerDbContext()
         {
-            //this.Database.EnsureDeleted();
-            //this.Database.EnsureCreated();
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             //MSSQLLocalDB
             //data source needs to be changed to specific source
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\ProjectsV13;Initial Catalog=MusicDBContext;Integrated Security=true;Connect Timeout=2");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PassDB;Integrated Security=true;Connect Timeout=2");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,9 +38,13 @@ namespace data_access_library
             modelBuilder.ApplyConfiguration(new InfoConfig());
             modelBuilder.ApplyConfiguration(new LoginConfig());
 
-            //modelBuilder.SeedCategories();
-            //modelBuilder.SeedItems();
-            //modelBuilder.SeedUsers();
+            modelBuilder.SeedCardTypes();
+            modelBuilder.SeedCategories();
+            modelBuilder.SeedCreditCard();
+            modelBuilder.SeedLogin();
+            modelBuilder.SeedPersonalInfo();
+            modelBuilder.SeedUsers();
+
         }
 
         //Collections

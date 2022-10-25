@@ -1,4 +1,5 @@
-﻿using System;
+﻿using data_access_library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace ClientApp
             Login lg=new Login();
             lg.Show();
             this.Close();
+            PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
 
         }
     }

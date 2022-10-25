@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using static data_access_library.PasswordManagerDbContext;
+using System;
 
 namespace data_access_library.Helpers.Config
 {
@@ -29,7 +30,7 @@ namespace data_access_library.Helpers.Config
             builder.Property(c => c.CardNumber).IsRequired().HasMaxLength(100);
             builder.HasOne(c => c.CardType).WithMany(ct => ct.Cards).HasForeignKey(c => c.CartTypeId);
             builder.Property(c => c.DateExpired).HasDefaultValue(DateTime.Now);
-            builder.Property(c => c.SVV).HasDefaultValue(001);
+            builder.Property(c => c.CVV).IsRequired().HasMaxLength(100);
         }
     }
 }
