@@ -1,4 +1,6 @@
-﻿namespace data_access_library
+﻿using System.Collections.Generic;
+
+namespace data_access_library
 {
     public partial class PasswordManagerDbContext
     {
