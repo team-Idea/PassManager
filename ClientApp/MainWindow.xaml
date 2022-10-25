@@ -60,12 +60,12 @@
 
         <Grid Grid.Column="0" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="30"></RowDefinition>
+                <RowDefinition MaxHeight="35"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" FontSize="20" Foreground="AliceBlue">All Species</TextBlock>
+            <TextBlock Grid.Row="0" Margin="5" FontSize="20" Foreground="AliceBlue">All Species</TextBlock>
             <Button HorizontalContentAlignment="Left" Grid.Row="1">Logins</Button>
             <Button HorizontalContentAlignment="Left" Grid.Row="2">Credit Cards</Button>
             <Button HorizontalContentAlignment="Left" Grid.Row="3">Personal Infos</Button>
