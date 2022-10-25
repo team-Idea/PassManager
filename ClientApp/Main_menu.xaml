@@ -11,33 +11,6 @@
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="898*"/>
         </Grid.ColumnDefinitions>
-        <Menu VerticalAlignment="Top" Grid.ColumnSpan="2">
-            <MenuItem>
-                <MenuItem Header="Light" Template="{DynamicResource SingleDropDownMenuItem}" Uid="0">
-                    <MenuItem.Icon>
-                        <Rectangle Stroke="#FF848484" Fill="#FFE8E8E8" StrokeThickness="2" StrokeLineJoin="Round" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="Colourful Light" Template="{DynamicResource SingleDropDownMenuItem}"  Uid="1">
-                    <MenuItem.Icon>
-                        <Rectangle Stroke="#FF2C7FF5" Fill="#FFE8E8E8" StrokeThickness="2" StrokeLineJoin="Round" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="Dark" Template="{DynamicResource SingleDropDownMenuItem}"  Uid="2">
-                    <MenuItem.Icon>
-                        <Rectangle Stroke="#FF404040" Fill="#FF1B1B1B" StrokeThickness="2" StrokeLineJoin="Round" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="Colourful Dark" Template="{DynamicResource SingleDropDownMenuItem}"  Uid="3">
-                    <MenuItem.Icon>
-                        <Rectangle Stroke="#FF2C7FF5" Fill="#FF1B1B1B" StrokeThickness="2" StrokeLineJoin="Round" />
-                    </MenuItem.Icon>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem>
-                <MenuItem Header="Show Help" Command="{Binding ShowHelpWindowCommand}" Template="{DynamicResource SingleDropDownMenuItem}"/>
-            </MenuItem>
-        </Menu>
         <Grid  Margin="10,23,20,10" Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
