@@ -13,7 +13,7 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="650">
+        Title="MainWindow" Height="450" Width="700">
     
     <Grid>
         
@@ -72,13 +72,15 @@
         </Grid>
         <Grid Grid.Column="0" Grid.Row="4">
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="30"></RowDefinition>
+                <RowDefinition MaxHeight="35"></RowDefinition>
+                <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Margin="5" Grid.Row="0" FontSize="20" Foreground="AliceBlue">Security Tools</TextBlock>
-            <Button HorizontalContentAlignment="Left" Grid.Row="1">Password Health</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="2">Account Settings</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="1">Generate Password</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="2">Password Health</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="3">Account Settings</Button>
         </Grid>
         
     </Grid>
