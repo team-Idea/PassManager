@@ -13,8 +13,73 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="400" Width="650">
+    
     <Grid>
-        <Button>Hello</Button>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="250"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+       
+        
+        <Border Grid.Column="0" Grid.RowSpan="4" Background="Gray"></Border>
+        <Border Grid.Column="1" Grid.RowSpan="4" BorderBrush="DarkGray" BorderThickness="2"></Border>
+        <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="2"></Border>
+
+        <Separator Grid.Column="0" Grid.Row="2"></Separator>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition MaxWidth="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Margin="5" Grid.Column="0" Background="DarkGray" TextAlignment="Center"></TextBox>
+            <Button Margin="5" Grid.Column="1">#</Button>
+        </Grid>
+        <Button HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5">Add new</Button>
+        
+        
+        <ListBox Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <!--<ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBoxItem>
+                       
+                    </ListBoxItem>
+                </DataTemplate>
+            </ListBox.ItemTemplate>-->
+            <ListBoxItem FontSize="20" Foreground="Gray">Test Item</ListBoxItem>
+        </ListBox>
+
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" FontSize="20" Foreground="AliceBlue">All Species</TextBlock>
+            <Button HorizontalContentAlignment="Left" Grid.Row="1">Logins</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="2">Credit Cards</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="3">Personal Infos</Button>
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="30"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="5" Grid.Row="0" FontSize="20" Foreground="AliceBlue">Security Tools</TextBlock>
+            <Button HorizontalContentAlignment="Left" Grid.Row="1">Password Health</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="2">Account Settings</Button>
+        </Grid>
+        
     </Grid>
 </Window>
