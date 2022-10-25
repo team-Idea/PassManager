@@ -17,6 +17,7 @@
     
     <Grid>
         
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="250"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -82,6 +83,6 @@
             <Button HorizontalContentAlignment="Left" Grid.Row="2">Password Health</Button>
             <Button HorizontalContentAlignment="Left" Grid.Row="3">Account Settings</Button>
         </Grid>
-        
+
     </Grid>
 </Window>

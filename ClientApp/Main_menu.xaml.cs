@@ -10,25 +10,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ClientApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Main_menu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Main_menu : Window
     {
-        
-        public MainWindow()
+        public Main_menu()
         {
-           
             InitializeComponent();
+            
+        }
+
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
             Login lg=new Login();
             lg.Show();
-            this.Close();
-
         }
     }
 }
