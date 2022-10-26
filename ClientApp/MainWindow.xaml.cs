@@ -26,9 +26,6 @@ namespace ClientApp
         {
            
             InitializeComponent();
-            Login lg=new Login();
-            lg.Show();
-            this.Close();
             PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
 
         }

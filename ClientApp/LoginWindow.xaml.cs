@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace ClientApp
 {
     /// <summary>
-    /// Interaction logic for Main_menu.xaml
+    /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class Main_menu : Window
+    public partial class LoginWindow : Window
     {
-        public Main_menu()
+        public LoginWindow()
         {
             InitializeComponent();
-            
-        }
-
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-            Login lg=new Login();
-            lg.Show();
         }
     }
 }
