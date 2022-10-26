@@ -35,7 +35,6 @@
                     <Button Grid.Column="1"  x:Name="log" Click="log_Click" Margin="50,0,20,0">Login</Button>
                     <Button   Grid.Column="0" Content="Create Account" Click="Register_Click" Margin="0,0,50,0"/>
                 </Grid>
-
             </StackPanel>
         </StackPanel>
     </DockPanel>

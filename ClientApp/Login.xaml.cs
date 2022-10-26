@@ -34,7 +34,7 @@ namespace ClientApp
         private void log_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-            Main_menu main = new Main_menu();
+            MainWindow main = new MainWindow();
             main.Show();  
         }
     }

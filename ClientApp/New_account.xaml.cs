@@ -1,5 +1,4 @@
-﻿using data_access_library;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ClientApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for New_account.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class New_account : Window
     {
-        
-        public MainWindow()
+        public New_account()
         {
-           
             InitializeComponent();
-            this.Hide();
-            Login lg=new Login();
-            lg.Show();
-            PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
-
         }
     }
 }
