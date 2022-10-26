@@ -15,21 +15,13 @@ using System.Windows.Shapes;
 namespace ClientApp
 {
     /// <summary>
-    /// Interaction logic for Register.xaml
+    /// Interaction logic for RegisterWindow.xaml
     /// </summary>
-    public partial class Register : Window
+    public partial class RegisterWindow : Window
     {
-        public Register()
+        public RegisterWindow()
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            Login lg=new Login();
-            lg.Show();
-        }
     }
-    
 }

@@ -13,7 +13,7 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="700">
+        Title="MainWindow" MinHeight="450" MinWidth="700" Height="450" Width="700">
     
     <Grid>
         
