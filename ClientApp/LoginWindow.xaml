@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
+
+        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -35,9 +37,9 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Margin="10" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="AliceBlue">Email:</TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="AliceBlue">Password:</TextBlock>
-            <TextBox Grid.Column="2" Grid.Row="0" Margin="10" Background="DarkGray"></TextBox>
+            <TextBox   Grid.Column="2" Grid.Row="0" Margin="10" Background="DarkGray"></TextBox>
             <PasswordBox Grid.Column="2" Grid.Row="1" Margin="10" Background="DarkGray"></PasswordBox>
-        </Grid>
+        </Grid> 
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

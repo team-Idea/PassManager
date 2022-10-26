@@ -27,6 +27,7 @@ namespace ClientApp
            
             InitializeComponent();
             PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
+            PasswordManagerModel passwordManagerModel = new PasswordManagerModel();
 
         }
     }

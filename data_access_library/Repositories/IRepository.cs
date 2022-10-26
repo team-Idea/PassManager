@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace data_access_library.Repositories
 {
-    internal interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> Get(Expression<Func<TEntity,
            bool>> filter,

@@ -1,14 +1,7 @@
 ﻿using data_access_library.Helpers;
 using data_access_library.Helpers.Config;
+using data_access_library.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Security.Principal;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace data_access_library
 {
@@ -16,6 +9,7 @@ namespace data_access_library
     {
         // Update-database -Project data_access_library
         // Add-migration (migrationName) -Project data_access_library
+
         public PasswordManagerDbContext()
         {
 
