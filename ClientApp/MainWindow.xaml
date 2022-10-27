@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:controls="clr-namespace:ClientApp.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:viewmodel="clr-namespace:ClientApp.viewModel" xmlns:accountstruct="clr-namespace:ClientApp.AccountStruct" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -13,11 +13,9 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="700" Height="450" Width="700">
-    
-    <Grid>
-        
+        Title="MainWindow" MinHeight="450" MinWidth="700" Height="600" Width="1000">
 
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="250"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -28,10 +26,9 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-       
-        
+            
         <Border Grid.Column="0" Grid.RowSpan="4" Background="Gray"></Border>
-        <Border Grid.Column="1" Grid.RowSpan="4" BorderBrush="DarkGray" BorderThickness="2"></Border>
+        
         <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="2"></Border>
 
         <Separator Grid.Column="0" Grid.Row="2"></Separator>
@@ -44,36 +41,76 @@
             <TextBox Margin="5" Grid.Column="0" Background="DarkGray" TextAlignment="Center"></TextBox>
             <Button Margin="5" Grid.Column="1">#</Button>
         </Grid>
-        <Button HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5">Add new</Button>
-        
-        
-        <ListBox Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
-            <!--<ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ListBoxItem>
-                       
-                    </ListBoxItem>
-                </DataTemplate>
-            </ListBox.ItemTemplate>-->
-            <ListBoxItem FontSize="20" Foreground="Gray">Test Item</ListBoxItem>
-        </ListBox>
+        <Button Command="{Binding ShowAddAccountWindowCommand}" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5">Add new password</Button>
 
-
+        <Grid Grid.Column="1" Width="auto"  Grid.Row="1" Margin="0,0,0,0">
+            <DockPanel Margin="0,0,0,55">
+                <Grid DockPanel.Dock="Right" Width="0" x:Name="AccountPanel">
+                    <Grid Width="450">
+                        <Border Background="{DynamicResource ContainerBackground}"/>
+                        <Grid DataContext="{Binding SelectedAccount.Account, UpdateSourceTrigger=PropertyChanged}">
+                            <Border VerticalAlignment="Top" Height="47" Background="{DynamicResource ContainerBackground}">
+                                <TextBox Text="{Binding AccountName, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Padding="3"/>
+                            </Border>
+                            <Label Content="Login" HorizontalAlignment="Left"         Margin="5,52,0,0" VerticalAlignment="Top" FontSize="16"/>
+                            <Label Content="Password" HorizontalAlignment="Left"      Margin="5,88,0,0" VerticalAlignment="Top" FontSize="16"/>
+                           
+                            <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Login, UpdateSourceTrigger=PropertyChanged}" ToolTipService.Placement="MousePoint" Margin="132,52,68,0"  VerticalAlignment="Top" FontSize="16" Padding="3"  IsReadOnly="False" Height="31"/>
+                            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding Password, UpdateSourceTrigger=PropertyChanged}" ToolTipService.Placement="MousePoint" Height="31" Margin="132,88,68,0"  VerticalAlignment="Top" FontSize="16" Padding="3"  IsReadOnly="False"/>
+                            
+                        </Grid>
+                        <Button Command="{Binding CopyDetailsCommand}" Content="Copy" HorizontalAlignment="Right" Margin="0,52,0,0" VerticalAlignment="Top" Width="69" Height="31" FontSize="16">
+                            <Button.CommandParameter>
+                                <system:Int32>0</system:Int32>
+                            </Button.CommandParameter>
+                        </Button>
+                        <Button Command="{Binding CopyDetailsCommand}" Content="Copy" HorizontalAlignment="Right" Margin="0,88,0,0" VerticalAlignment="Top" Width="69" Height="31" FontSize="16"    >
+                            <Button.CommandParameter>
+                                <system:Int32>1</system:Int32>
+                            </Button.CommandParameter>
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Grid Width="auto">
+                    <Label Content="Accounts List" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 5 0 0" FontSize="16"/>
+                    <ListBox ItemsSource="{Binding AccountsList, UpdateSourceTrigger=PropertyChanged}"
+                                     SelectedItem="{Binding SelectedAccount, UpdateSourceTrigger=PropertyChanged}" 
+                                     SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}" 
+                                     
+                                    
+                                     
+                                     HorizontalContentAlignment="Stretch"
+                                     ScrollViewer.CanContentScroll="False"
+                                     Margin="0,46,0,0"
+                                     x:Name="lBox">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <controls:AccountControl DataContext="{Binding}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </DockPanel>
+        </Grid>
         <Grid Grid.Column="0" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition MaxHeight="35"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Margin="5" FontSize="20" Foreground="AliceBlue">All Species</TextBlock>
-            <Button HorizontalContentAlignment="Left" Grid.Row="1">Logins</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="2">Credit Cards</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="3">Personal Infos</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="3">Add new Account</Button>
+            <Button Command="{Binding DeleteAccountCommand}" HorizontalContentAlignment="Left" Grid.Row="2">Delete Account</Button>
+            <Button Command="{Binding AutoShowContentPanelCommand}" HorizontalContentAlignment="Left" Grid.Row="1">Edit Account </Button>
+
         </Grid>
         <Grid Grid.Column="0" Grid.Row="4">
             <Grid.RowDefinitions>
                 <RowDefinition MaxHeight="35"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -82,7 +119,8 @@
             <Button HorizontalContentAlignment="Left" Grid.Row="1">Generate Password</Button>
             <Button HorizontalContentAlignment="Left" Grid.Row="2">Password Health</Button>
             <Button HorizontalContentAlignment="Left" Grid.Row="3">Account Settings</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="4">Personal Infos</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="5">Credit Cards</Button>
         </Grid>
-
     </Grid>
 </Window>

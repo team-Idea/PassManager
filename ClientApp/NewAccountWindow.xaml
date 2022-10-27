@@ -1,0 +1,40 @@
+﻿<Window x:Class="ClientApp.NewAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientApp"
+        mc:Ignorable="d"
+       Title="New Login" 
+        Height="772" Width="800"
+        Style="{DynamicResource CustomToolWindowStyle}">
+    <Grid>
+        <Grid VerticalAlignment="Top" Height="50" Background="{DynamicResource ContainerBackground}">
+            <Border BorderBrush="{DynamicResource ControlDefaultBorderBrush}" BorderThickness="0 0 0 1" Margin="159,0,0,0"/>
+            <Label Content="Add a new password" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Segoe UI Symbol"/>
+        </Grid>
+        <Grid Margin="0,50,0,500" HorizontalAlignment="Left" Width="160" Background="{DynamicResource ContainerBackground}">
+            <Border BorderBrush="{DynamicResource ControlDefaultBorderBrush}" BorderThickness="0 0 1 0" Height="269" VerticalAlignment="Top"/>
+            <Label Content="Login" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Symbol"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" FontSize="20" FontFamily="Segoe UI Symbol"/>
+            
+        </Grid>
+        <Grid Margin="160,50,0,500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="{DynamicResource ContainerBackground}" BorderThickness="1 1 0 1"/>
+            <TextBox x:Name="a" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"    Height="37" Margin="10,10,180,0"  VerticalAlignment="Top" FontSize="20" Padding="3" FontFamily="Segoe UI Symbol"/>
+            <TextBox x:Name="b" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Height="37" Margin="10,52,180,0"  VerticalAlignment="Top" FontSize="20" Padding="3" FontFamily="Segoe UI Symbol"/>
+           
+            <Button Click="ClearTextClick" Uid="1"  Content="Clear" HorizontalAlignment="Right" Margin="0,10,10,0"  VerticalAlignment="Top" Width="80" Height="37" FontSize="16" FontFamily="Segoe UI Symbol"/>
+            <Button Click="ClearTextClick" Uid="2"  Content="Clear" HorizontalAlignment="Right" Margin="0,52,10,0"  VerticalAlignment="Top" Width="80" Height="37" FontSize="16" FontFamily="Segoe UI Symbol"/>
+           
+            <Button Click="PasteTextToBox" Uid="1"  Content="Paste" HorizontalAlignment="Right" Margin="0,10,95,0"  VerticalAlignment="Top" Width="80" Height="37" FontSize="16" FontFamily="Segoe UI Symbol"/>
+            <Button Click="PasteTextToBox" Uid="2"  Content="Paste" HorizontalAlignment="Right" Margin="0,52,95,0"  VerticalAlignment="Top" Width="80" Height="37" FontSize="16" FontFamily="Segoe UI Symbol"/>
+        </Grid>
+        <Grid Background="{DynamicResource ContainerBackground}" Height="100" VerticalAlignment="Bottom" Margin="8,0,0,490">
+            <Button Click="AddAccountClick" Content="Add" Margin="10" FontSize="20" FontFamily="Segoe UI Light"/>
+        </Grid>
+    </Grid>
+</Window>
