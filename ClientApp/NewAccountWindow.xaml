@@ -11,6 +11,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:accountstruct="clr-namespace:ClientApp.AccountStruct"
         mc:Ignorable="d"
         Title="New Login" 
         Height="400" Width="500"

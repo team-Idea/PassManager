@@ -2,15 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClientApp"
-
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:controls="clr-namespace:ClientApp.Controls" 
-        xmlns:system="clr-namespace:System;assembly=mscorlib" 
-        xmlns:viewmodel="clr-namespace:ClientApp.viewModel" 
-        xmlns:accountstruct="clr-namespace:ClientApp.AccountStruct" 
-        d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+      
+        xmlns:viewmodels="clr-namespace:ClientApp.viewModel"
+        xmlns:controls="clr-namespace:ClientApp.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib" 
+       
+        ResizeMode="CanResizeWithGrip"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -18,9 +14,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        mc:Ignorable="d"
         Title="MainWindow" MinHeight="450" MinWidth="750" Height="600" Width="1000">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="250"></ColumnDefinition>
@@ -67,7 +61,7 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Border VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"  Background="{DynamicResource ContainerBackground}">
-                                <TextBox  Text="{Binding AccountName, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" 
+                                <TextBox  Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" 
                                           VerticalAlignment="Center" HorizontalAlignment="Center" 
                                          FontSize="24" Padding="3"/>
                             </Border>
