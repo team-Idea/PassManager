@@ -97,7 +97,7 @@
                     </Grid>
                 </Grid>
                 <Grid Width="auto">
-                    <Label Content="Accounts List" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 5 0 0" FontSize="16"/>
+                    <Label Content="Accounts List" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="AliceBlue" Margin="0 5 0 0" FontSize="16"/>
                     <ListBox ItemsSource="{Binding AccountsList, UpdateSourceTrigger=PropertyChanged}"
                                      SelectedItem="{Binding SelectedAccount, UpdateSourceTrigger=PropertyChanged}" 
                                      SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}" 
