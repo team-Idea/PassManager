@@ -29,6 +29,7 @@ namespace ClientApp
            
             InitializeComponent();
             PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
+
             ViewModel = new MainViewModel();
             this.DataContext = ViewModel;
            // ViewModel.ScrollIntoView = ScrollIntoViewThingy;
