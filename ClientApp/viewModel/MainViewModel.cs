@@ -1,5 +1,6 @@
 ﻿using ClientApp.Controls;
 using ClientApp.Entities;
+using data_access_library;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,44 +10,42 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using static data_access_library.PasswordManagerDbContext;
+using data_access_library.Repositories;
+using System.Xml.Linq;
+using PropertyChanged;
+using ClientApp.AccountStruct;
 
 namespace ClientApp.viewModel
 {
-    public class MainViewModel : BaseViewModel
+    [AddINotifyPropertyChangedInterface]
+    public class MainViewModel
     {
         //Private fields
         private int selectedIndex;
         private bool enableSaveLoad;
         private bool contentPanelShowing;
         private AccountControlViewModel _selectedAccount;
-
+        PasswordManagerDbContext context;
+        IRepository<User> userRep;
+        IRepository<Login_Item> loginRep;
+        IRepository<Credit_Card> creditcardRep;
+        IRepository<Personal_Info> personalinfoRep;
+        private ObservableCollection<CreditCardInfo> creditCards;
+        private ObservableCollection<LoginItemInfo> loginItemInfos;
+        private ObservableCollection<PersonalInfo> personalInfos;
         public ObservableCollection<AccountControlViewModel> AccountsList { get; set; }
 
+        public IEnumerable<CreditCardInfo> CreditCardInfos => creditCards;
+        public IEnumerable<LoginItemInfo> LoginItemInfos => loginItemInfos;
+        public IEnumerable<PersonalInfo> PersonalInfos => personalInfos;
+        public int SelectedIndex { get; set; }
 
-        public int SelectedIndex
-        {
-            get => selectedIndex;
-            set { RaisePropertyChanged(ref selectedIndex, value); }
-        }
+        public bool EnableSaveAndLoad { get; set; }
 
-        public bool EnableSaveAndLoad
-        {
-            get => enableSaveLoad;
-            set => RaisePropertyChanged(ref enableSaveLoad, value);
-        }
-
-        public bool ContentPanelShowing
-        {
-            get => contentPanelShowing;
-            set => RaisePropertyChanged(ref contentPanelShowing, value);
-        }
-
-        public AccountControlViewModel SelectedAccount
-        {
-            get => _selectedAccount;
-            set => RaisePropertyChanged(ref _selectedAccount, value);
-        }
-
+        public bool ContentPanelShowing { get; set; }
+        public User CurrentUser  { get; set; }
+        public AccountControlViewModel SelectedAccount { get; set; }
+        // add personal_info,credit_card, login
         public ICommand ShowAddAccountWindowCommand { get; set; }
         public ICommand ShowEditAccountWindowCommand { get; set; }
         public ICommand DeleteAccountCommand { get; set; }
@@ -73,10 +72,17 @@ namespace ClientApp.viewModel
 
         public MainViewModel()
         {
-            AccountsList = new ObservableCollection<AccountControlViewModel>();
+            creditCards = new ObservableCollection<CreditCardInfo>();
+            loginItemInfos = new ObservableCollection<LoginItemInfo>();
+            personalInfos = new ObservableCollection<PersonalInfo>();
             NewAccountWndow = new NewAccountWindow();
           
             SetupCommandBindings();
+            context = new PasswordManagerDbContext();
+            userRep = new Repository<User>(context);
+            loginRep = new Repository<Login_Item>(context);
+            creditcardRep = new Repository<Credit_Card>(context);
+            personalinfoRep = new Repository<Personal_Info>(context);
 
             NewAccountWndow.AddAccountCallback = this.AddAccount;
         }
@@ -122,14 +128,25 @@ namespace ClientApp.viewModel
 
 
         #region Adding, Editing and Deleting Accounts
-
-        public void AddAccount() { AddAccount(NewAccountWndow.AccountModel); }
-        public void AddAccount(User accountContent)
+        // fix Add methods to windows (AccountControlViewModel has method addAccount, needs to bind it with all collections)
+        public void AddLogAccount() { AddAccount(); }
+        public void AddCardAccount() { AddAccount(); }
+        public void AddInfoAccount() { AddAccount(); }
+        public void AddAccount(LoginItemInfo accountContent)
         {
             //e
-            AccountControlViewModel account = CreateAccountItem(accountContent);
+            AccountControlViewModel account = CreateLoginItem(accountContent);
 
             AddAccount(account);
+            loginRep.Insert(new Login_Item {
+                Id = accountContent.Id,
+                Name = accountContent.Name,
+                IsFavourite = accountContent.IsFavourite,
+                CategoryId = accountContent.CategoryId,
+                UserId = accountContent.UserId,
+                SavedLogin = accountContent.SavedLogin,
+                SavedPassword = accountContent.SavedPassword
+            });
             NewAccountWndow.ResetAccountContext();
         }
 
@@ -138,10 +155,10 @@ namespace ClientApp.viewModel
             AccountsList.Add(account);
         }
 
-        public AccountControlViewModel CreateAccountItem(User accountDetails)
+        public AccountControlViewModel CreateLoginItem(LoginItemInfo accountDetails)
         {
             AccountControlViewModel account = new AccountControlViewModel();
-            account.Account = accountDetails;
+            account.LogAccount = accountDetails;
             SetupAccountItemCallbacks(account);
             return account;
         }
@@ -169,7 +186,7 @@ namespace ClientApp.viewModel
 
         public void ShowAccountContent(AccountControlViewModel account)
         {
-            if (account?.Account != null)
+            if (account?.LogAccount != null)
             {
                 if (!ContentPanelShowing) ShowContentPanel();
                 SelectedAccount = account;
@@ -243,9 +260,11 @@ namespace ClientApp.viewModel
         {
             switch (detailsIndex)
             {
-                case 0: Clipboard.SetText(SelectedAccount.Account.Login); break;
-                case 1: Clipboard.SetText(SelectedAccount.Account.Password); break; 
+                case 0: Clipboard.SetText(SelectedAccount.LogAccount.SavedLogin); break;
+                case 1: Clipboard.SetText(SelectedAccount.LogAccount.SavedPassword); break; 
             }
         }
+        
+        
     }
 }

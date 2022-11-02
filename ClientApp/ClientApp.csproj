@@ -9,49 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\add – копія %282%29.png" />
-    <None Remove="Resources\addAccountIcon.png" />
-    <None Remove="Resources\arrow-right-light – копія.png" />
-    <None Remove="Resources\arrow.right – копія %282%29.png" />
-    <None Remove="Resources\cancel.40 – копія %282%29.png" />
-    <None Remove="Resources\createDirectoryIcon.png" />
-    <None Remove="Resources\deleteAccountIcon.png" />
-    <None Remove="Resources\edit – копія – копія.png" />
-    <None Remove="Resources\editAccountIcon.png" />
-    <None Remove="Resources\export – копія – копія.png" />
-    <None Remove="Resources\googlePlusIcon – копія.PNG" />
-    <None Remove="Resources\import – копія.png" />
-    <None Remove="Resources\loadDirectoryIcon.png" />
-    <None Remove="Resources\login-btn-light – копія.png" />
-    <None Remove="Resources\login.40.png" />
-    <None Remove="Resources\login.loading – копія.png" />
-    <None Remove="Resources\logout.png" />
-    <None Remove="Resources\page.copy.png" />
-    <None Remove="Resources\page.delete.png" />
-    <None Remove="Resources\page.edit.png" />
-    <None Remove="Resources\password.cancel.40.png" />
-    <None Remove="Resources\password.confirm.40.png" />
-    <None Remove="Resources\password.export.png" />
-    <None Remove="Resources\password.import.png" />
-    <None Remove="Resources\password.master.png" />
-    <None Remove="Resources\password.new.png" />
-    <None Remove="Resources\password.options.png" />
-    <None Remove="Resources\password.search.40.png" />
-    <None Remove="Resources\people.right.png" />
-    <None Remove="Resources\pokeball.png" />
-    <None Remove="Resources\register.40.png" />
-    <None Remove="Resources\register.png" />
-    <None Remove="Resources\registered.jpg" />
-    <None Remove="Resources\saveBackupIcon.png" />
-    <None Remove="Resources\saveDirectoryIcon.png" />
-    <None Remove="Resources\settings.cancel.40.png" />
-    <None Remove="Resources\settings.png" />
-    <None Remove="Resources\settings.save.40.png" />
-    <None Remove="Resources\showAccountIcon.png" />
-    <None Remove="Resources\user-blue.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.18.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
@@ -60,133 +17,11 @@
     </PackageReference>
     <PackageReference Include="NEST" Version="7.17.5" />
     <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\data_access_library\data_access_library.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Resources\add – копія (2).png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\addAccountIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\arrow-right-light – копія.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\arrow.right – копія (2).png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\cancel.40 – копія (2).png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\createDirectoryIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\deleteAccountIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\edit – копія – копія.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\editAccountIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\export – копія – копія.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\googlePlusIcon – копія.PNG">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\import – копія.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\loadDirectoryIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\login-btn-light – копія.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\login.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\login.loading – копія.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\logout.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\page.copy.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\page.delete.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\page.edit.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.cancel.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.confirm.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.export.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.import.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.master.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.new.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.options.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\password.search.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\people.right.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\pokeball.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\register.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\register.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\registered.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\saveBackupIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\saveDirectoryIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\settings.cancel.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\settings.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\settings.save.40.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\showAccountIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\user-blue.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
 </Project>

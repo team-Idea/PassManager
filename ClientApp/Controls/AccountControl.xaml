@@ -3,8 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:accountstruct="clr-namespace:ClientApp.AccountStruct" xmlns:controls="clr-namespace:ClientApp.Controls"
-            
+        xmlns:system="clr-namespace:System;assembly=mscorlib" 
+        xmlns:accountstruct="clr-namespace:ClientApp.AccountStruct" 
+        xmlns:controls="clr-namespace:ClientApp.Controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignDarkBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
              mc:Ignorable="d"
        MouseDoubleClick="UserControl_MouseDoubleClick"
              d:DesignHeight="90" 
@@ -32,12 +41,40 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy Password" FontSize="15" Grid.Column="2" Margin="1,0,0,0">
+            <materialDesign:PopupBox
+                PlacementMode="BottomAndAlignCentres"
+                ToolTipService.Placement="Right"
+                ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox"
+                Opened="PopupBox_OnOpened"
+                Closed="PopupBox_OnClosed"
+                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                              <StackPanel>
+                                  <Button
+                    ToolTip="One with custom opacity"
+                    Opacity="0.5"
+                    Content="1" />
+                                  <Button
+                    ToolTip="Two"
+                    Content="2" />
+                                  <Button
+                    ToolTip="Three"
+                    Content="3" />
+                              </StackPanel>
+            </materialDesign:PopupBox>
+            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}"  Content="Copy Password"     
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="15"
+                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners" 
+                    FontSize="15" Grid.Column="2" Margin="1,0,0,0">
                 <Button.CommandParameter>
                     <system:Int32>2</system:Int32>
                 </Button.CommandParameter>
             </Button>
-            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy Login"    FontSize="15" Grid.Column="1" Margin="0,0,1,0">
+            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy Login" 
+                    Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    materialDesign:ButtonAssist.CornerRadius="15"
+                    ToolTip="MaterialDesignRaisedDarkButton with Round Corners"
+                    FontSize="15" Grid.Column="1" Margin="0,0,1,0">
                 <Button.CommandParameter>
                     <system:Int32>3</system:Int32>
                 </Button.CommandParameter>

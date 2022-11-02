@@ -1,4 +1,6 @@
-﻿using ClientApp.Entities;
+﻿using ClientApp.AccountStruct;
+using ClientApp.Entities;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +12,13 @@ using static data_access_library.PasswordManagerDbContext;
 
 namespace ClientApp.Controls
 {
-    public class AccountControlViewModel : BaseViewModel
+    [AddINotifyPropertyChangedInterface]
+    public class AccountControlViewModel 
     {
-        private User _account;
-        public User Account
-        {
-            get => _account;
-            set => RaisePropertyChanged(ref _account, value);
-        }
+
+        public LoginItemInfo LogAccount { get; set; }
+        public CreditCardInfo CreditCard { get; set; }
+        public PersonalInfo Personal { get; set; }
 
         public ICommand SetClipboardCommand { get; }
 
@@ -32,8 +33,8 @@ namespace ClientApp.Controls
         {
             switch (accountInfoUid)
             {
-                case 1: Clipboard.SetText(Account.Login); break;
-                case 2: Clipboard.SetText(Account.Password); break;
+                case 1: Clipboard.SetText(LogAccount.SavedLogin); break;
+                case 2: Clipboard.SetText(LogAccount.SavedPassword); break;
             }
         }
 

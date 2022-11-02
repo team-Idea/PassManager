@@ -25,7 +25,7 @@ namespace data_access_library
             base.OnConfiguring(optionsBuilder);
             //MSSQLLocalDB
             //data source needs to be changed to specific source
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PassDB;Integrated Security=true;Connect Timeout=2");
+            optionsBuilder.UseSqlServer("DefaultConnection");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
