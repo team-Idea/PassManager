@@ -84,7 +84,7 @@ namespace ClientApp.viewModel
             creditcardRep = new Repository<Credit_Card>(context);
             personalinfoRep = new Repository<Personal_Info>(context);
 
-            NewAccountWndow.AddAccountCallback = this.AddAccount;
+            //NewAccountWndow.AddAccountCallback = this.AddAccount;
         }
 
         private void SetupCommandBindings()
@@ -129,9 +129,9 @@ namespace ClientApp.viewModel
 
         #region Adding, Editing and Deleting Accounts
         // fix Add methods to windows (AccountControlViewModel has method addAccount, needs to bind it with all collections)
-        public void AddLogAccount() { AddAccount(); }
-        public void AddCardAccount() { AddAccount(); }
-        public void AddInfoAccount() { AddAccount(); }
+        //public void AddLogAccount() { AddAccount(); }
+        //public void AddCardAccount() { AddAccount(); }
+        //public void AddInfoAccount() { AddAccount(); }
         public void AddAccount(LoginItemInfo accountContent)
         {
             //e
