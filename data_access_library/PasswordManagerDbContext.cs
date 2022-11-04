@@ -31,18 +31,10 @@ namespace data_access_library
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new CategoryConfig());
-            modelBuilder.ApplyConfiguration(new CardTypeConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
-            modelBuilder.ApplyConfiguration(new CardConfig());
-            modelBuilder.ApplyConfiguration(new InfoConfig());
             modelBuilder.ApplyConfiguration(new LoginConfig());
 
-            modelBuilder.SeedCardTypes();
-            modelBuilder.SeedCategories();
-            modelBuilder.SeedCreditCard();
             modelBuilder.SeedLogin();
-            modelBuilder.SeedPersonalInfo();
             modelBuilder.SeedUsers();
 
         }
@@ -50,9 +42,5 @@ namespace data_access_library
         //Collections
         public DbSet<User> Users { get; set; }
         public DbSet<Login_Item> Logins { get; set; }
-        public DbSet<Credit_Card> Cards { get; set; }
-        public DbSet<Personal_Info> Infos { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<CardType> CardTypes { get; set; }
     }
 }

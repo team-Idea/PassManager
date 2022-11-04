@@ -10,9 +10,7 @@ namespace data_access_library.Helpers.Config
         {
             builder.Property(u => u.Login).IsRequired().HasMaxLength(100);
             builder.Property(u => u.Password).IsRequired().HasMaxLength(100);
-            builder.HasMany(u => u.Cards).WithOne(c => c.User).HasForeignKey(c => c.UserId);
             builder.HasMany(u => u.Logins).WithOne(l => l.User).HasForeignKey(l => l.UserId);
-            builder.HasMany(u => u.Infos).WithOne(i => i.User).HasForeignKey(i => i.UserId);
         }
     }
 }
