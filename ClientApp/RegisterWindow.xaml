@@ -5,52 +5,152 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientApp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignDarkBackground}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material"
         mc:Ignorable="d"
-        Title="RegisterWindow" MinHeight="500" MinWidth="400" Height="500" Width="400">
+        Title="RegisterWindow" MinHeight="500" MinWidth="400" Height="500" Width="400"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="MainWindow_OnMouseDown">
+    <Window.Resources>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Light"/>
+
+
+
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20"
+                                                                      BorderThickness="2"
+                                                                       BorderBrush="White">
+                            <ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Opacity" Value="0.4"/>
+                    <Setter Property="Foreground" Value="DeepSkyBlue"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="100"></RowDefinition>
-            <RowDefinition MaxHeight="80"></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition MaxHeight="80"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Border Grid.RowSpan="4" BorderBrush="DarkGray" BorderThickness="2"></Border>
-        <Image Grid.Row="0" Margin="10" Width="100" Source="/Resources/registered.jpg"/>
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="50" Foreground="AliceBlue">Register</TextBlock>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="160"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Margin="10" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="AliceBlue">Name:</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="AliceBlue">Email:</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="2" Margin="10" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="AliceBlue">Username:</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="3" Margin="10" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="AliceBlue">Password:</TextBlock>
-            <TextBox Grid.Column="2" Grid.Row="0" Margin="10" Background="DarkGray"></TextBox>
-            <TextBox Grid.Column="2" Grid.Row="1" Margin="10" Background="DarkGray"></TextBox>
-            <TextBox Grid.Column="2" Grid.Row="2" Margin="10" Background="DarkGray"></TextBox>
-            <PasswordBox Grid.Column="2" Grid.Row="3" Margin="10" Background="DarkGray"></PasswordBox>
-        </Grid>
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Margin="10">Cancel</Button>
-            <Button Grid.Column="1" Margin="10">Register</Button>
+
+
+            <Border CornerRadius="10" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7be9f6" Offset="0.0"/>
+                        <GradientStop Color="#f083da" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="Resources\registration-icon-png.jpg" Width="200"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="Username"
+                             FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Text="Username"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"
+                             Margin="63,0,0,0"/>
+                    <iconPacks:PackIconMaterial Kind="Account" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                    <PasswordBox x:Name="Password_d" 
+                             FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Password="Password"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"
+                             Margin="63,0,0,0"/>
+                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <PasswordBox x:Name="PasswordConfrim_d" 
+                             FontFamily="Helvetica"
+                             FontWeight="Light"
+                             Password="Password"
+                             FontSize="20"
+                             HorizontalAlignment="Center"
+                             Foreground="White"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Width="235"
+                             HorizontalContentAlignment="Left"
+                             Opacity="0.5"
+                             Height="25"
+                             Margin="63,0,0,0"/>
+                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Center" 
+                                                Foreground="White"/>
+                </StackPanel>
+
+                <Border Width="250"
+                        Height="2"
+                        Background="White"
+                        Opacity="0.5"/>
+
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                    <Button Width="100" Height="40" Content="Cancel" Margin="60,0,60,0" Click="Button_Click_1"/>
+                    <Button Width="100" Height="40" Content="Register" Click="Button_Click"/>
+                </StackPanel>
+
+            </StackPanel>
         </Grid>
     </Grid>
+    
+   
 </Window>

@@ -70,10 +70,9 @@ namespace ClientApp
 
         private void AddAccountClick(object sender, RoutedEventArgs e)
         {
-            if (a.Text == "" || b.Text == ""){ MessageBox.Show("lines are empty");}
-            else if (a.Text ==a.Text ||b.Text == b.Text ) {AddAccountCallbackFunc();this.Hide();}
-            
+            if (a.Text == "" || b.Text == "") { MessageBox.Show("lines are empty"); }
+            else if (a.Text == a.Text || b.Text == b.Text) { AddAccountCallbackFunc(); this.Hide(); }
+
         }
     }
 }
-
