@@ -51,7 +51,7 @@ namespace ClientApp
         {
             if (context.Users.FirstOrDefault(u => u.Login == Username.Text) != null)
             {
-                User user = context.Users.Where(u => u.Login == Username.Text).FirstOrDefault();
+                LoginItem user = context.Users.Where(u => u.Login == Username.Text).FirstOrDefault();
                 if (Password.Password ==user.Password)
                 {
                     MainWindow min = new MainWindow();

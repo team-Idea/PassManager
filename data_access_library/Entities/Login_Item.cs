@@ -9,7 +9,7 @@
             public bool IsFavourite { get; set; }
             public int CategoryId { get; set; }
             public int UserId { get; set; }
-            public User User { get; set; }
+            public LoginItem User { get; set; }
             public string SavedLogin { get; set; }
             public string SavedPassword { get; set; }
         }

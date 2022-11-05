@@ -32,7 +32,7 @@ namespace ClientApp
 
             ViewModel = new MainViewModel();
             this.DataContext = ViewModel;
-           // ViewModel.ScrollIntoView = ScrollIntoViewThingy;
+         
             ViewModel.ShowContentPanelCallback = this.ShowContentPanel;
             ViewModel.HideContentPanelCallback = this.HideContentPanel;
             HideContentPanel();
@@ -74,6 +74,11 @@ namespace ClientApp
             AnimateContentPanelWidth(450, 0);
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow log = new LoginWindow();
+            log.Show();
+            this.Hide();
+        }
     }
 }

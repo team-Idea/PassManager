@@ -1,5 +1,6 @@
 ﻿using ClientApp.Controls;
 using ClientApp.Entities;
+using data_access_library;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,14 +15,15 @@ namespace ClientApp.viewModel
 {
     public class MainViewModel : BaseViewModel
     {
+        PasswordManagerDbContext context;
         //Private fields
         private int selectedIndex;
-        private bool enableSaveLoad;
         private bool contentPanelShowing;
         private AccountControlViewModel _selectedAccount;
 
+      
         public ObservableCollection<AccountControlViewModel> AccountsList { get; set; }
-
+     
 
         public int SelectedIndex
         {
@@ -29,11 +31,7 @@ namespace ClientApp.viewModel
             set { RaisePropertyChanged(ref selectedIndex, value); }
         }
 
-        public bool EnableSaveAndLoad
-        {
-            get => enableSaveLoad;
-            set => RaisePropertyChanged(ref enableSaveLoad, value);
-        }
+        
 
         public bool ContentPanelShowing
         {
@@ -64,7 +62,7 @@ namespace ClientApp.viewModel
         public bool AccountsArePresent => AccountsList.Count > 0;
         public bool AccountIsSelected { get => SelectedIndex > -1; }
 
-        public NewAccountWindow NewAccountWndow { get; set; }
+        public LoginAddWindow LoginAddWindow { get; set; }
 
 
         public Action ShowContentPanelCallback { get; set; }
@@ -74,18 +72,20 @@ namespace ClientApp.viewModel
         public MainViewModel()
         {
             AccountsList = new ObservableCollection<AccountControlViewModel>();
-            NewAccountWndow = new NewAccountWindow();
+            LoginAddWindow = new LoginAddWindow();
           
             SetupCommandBindings();
 
-            NewAccountWndow.AddAccountCallback = this.AddAccount;
-        }
+            LoginAddWindow.AddLoginCallback = this.AddLogin;
+
+            context = new PasswordManagerDbContext();
+           }
 
         private void SetupCommandBindings()
         {
-            ShowAddAccountWindowCommand = new Command(ShowAddAccountWindow);
-            ShowEditAccountWindowCommand = new Command(ShowEditAccountWindow);
-            DeleteAccountCommand = new Command(DeleteSelectedAccount);
+            ShowAddAccountWindowCommand = new Command(ShowAddLoginWindow);
+            ShowEditAccountWindowCommand = new Command(ShowEditLoginWindow);
+            DeleteAccountCommand = new Command(DeleteSelectedLogin);
             MoveAccountPositionCommand = new CommandParam<object>(MoveAccPos);
             AutoShowContentPanelCommand = new Command(AutoSetContentPanelVisibility);
             CopyDetailsCommand = new CommandParam<int>(CopyDetailsToClipboard);
@@ -93,8 +93,8 @@ namespace ClientApp.viewModel
            
         }
 
-       
 
+        #region key
         //helper. converts the "index" of a Key to an int. e.g, A = 1, c = 3.
         private int KeyInt(Key key) => (int)key;
         public void KeyDown(Key key, bool keyIsDown)
@@ -108,10 +108,10 @@ namespace ClientApp.viewModel
             if (KeysDown[KeyInt(Key.LeftCtrl)])
             {
                 //CTRL Pressed
-                if (KeysDown[KeyInt(Key.A)]) ShowAddAccountWindow();
-                if (KeysDown[KeyInt(Key.E)]) ShowEditAccountWindow();
+                if (KeysDown[KeyInt(Key.A)]) ShowAddLoginWindow();
+                if (KeysDown[KeyInt(Key.E)]) ShowEditLoginWindow();
                 if (KeysDown[KeyInt(Key.K)]) AutoSetContentPanelVisibility();
-                if (KeysDown[KeyInt(Key.Delete)]) DeleteSelectedAccount();
+                if (KeysDown[KeyInt(Key.Delete)]) DeleteSelectedLogin();
             }
             else
             {
@@ -120,67 +120,76 @@ namespace ClientApp.viewModel
             }
         }
 
-
+        #endregion
         #region Adding, Editing and Deleting Accounts
 
-        public void AddAccount() { AddAccount(NewAccountWndow.AccountModel); }
-        public void AddAccount(User accountContent)
+       
+        public void AddLogin() 
         {
-            //e
-            AccountControlViewModel account = CreateAccountItem(accountContent);
-
-            AddAccount(account);
-            NewAccountWndow.ResetAccountContext();
+            AddLogin(LoginAddWindow.LoginModel); 
         }
 
-        public void AddAccount(AccountControlViewModel account)
+     
+       
+      
+        public void AddLogin(Login_Item accountContent)
+        {
+            //e
+            AccountControlViewModel account = CreateLogintItem(accountContent);
+
+            AddLogin(account);
+            LoginAddWindow.ResetAccountContext();
+            context.Logins.Add(new Login_Item() {
+                Name = accountContent.Name,
+                SavedLogin = accountContent.SavedLogin,
+                SavedPassword = accountContent.SavedPassword,
+            });
+        }
+
+        public void AddLogin(AccountControlViewModel account)
         {
             AccountsList.Add(account);
         }
 
-        public AccountControlViewModel CreateAccountItem(User accountDetails)
+        public AccountControlViewModel CreateLogintItem(Login_Item accountDetails)
         {
             AccountControlViewModel account = new AccountControlViewModel();
-            account.Account = accountDetails;
-            SetupAccountItemCallbacks(account);
+            account.Login = accountDetails;
+            SetupLoginItemCallbacks(account);
             return account;
         }
 
-        public void SetupAccountItemCallbacks(AccountControlViewModel item)
+        public void SetupLoginItemCallbacks(AccountControlViewModel item)
         {
-            item.AutoShowContentCallback = ShowAccountContent;
+            item.AutoShowContentCallback = ShowLoginContent;
         }
 
-        public void DeleteSelectedAccount()
+        public void DeleteSelectedLogin()
         {
             if (AccountIsSelected && AccountsArePresent) AccountsList.RemoveAt(SelectedIndex);
         }
 
-        public void ShowAddAccountWindow()
+        public void ShowAddLoginWindow()
         {
-            NewAccountWndow.Show();
-            NewAccountWndow.Focus();
+            LoginAddWindow.Show();
+            LoginAddWindow.Focus();
         }
 
-        public void ShowEditAccountWindow()
+        public void ShowEditLoginWindow()
         {
-            ShowAccountContent(SelectedAccount);
+            ShowLoginContent(SelectedAccount);
         }
 
-        public void ShowAccountContent(AccountControlViewModel account)
+        public void ShowLoginContent(AccountControlViewModel account)
         {
-            if (account?.Account != null)
+            if (account?.Login != null)
             {
                 if (!ContentPanelShowing) ShowContentPanel();
                 SelectedAccount = account;
             }
         }
-
-
         #endregion
-
-
-        public void ClearAccountsList()
+        public void ClearLoginsList()
         {
             SelectedIndex = 0;
             AccountsList.Clear();
@@ -210,7 +219,7 @@ namespace ClientApp.viewModel
 
         public void CloseAllWindows()
         {
-            NewAccountWndow.Close();
+            LoginAddWindow.Close();
         }
 
         public void AutoSetContentPanelVisibility()
@@ -243,8 +252,9 @@ namespace ClientApp.viewModel
         {
             switch (detailsIndex)
             {
-                case 0: Clipboard.SetText(SelectedAccount.Account.Login); break;
-                case 1: Clipboard.SetText(SelectedAccount.Account.Password); break; 
+                case 0: Clipboard.SetText(SelectedAccount.Login.Name); break;
+                case 1: Clipboard.SetText(SelectedAccount.Login.SavedLogin); break;
+                case 2: Clipboard.SetText(SelectedAccount.Login.SavedPassword); break; 
             }
         }
     }

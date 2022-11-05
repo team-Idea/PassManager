@@ -13,7 +13,7 @@
         Background="{DynamicResource MaterialDesignDarkBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="LoginAddWindow" MinHeight="350" Height="350" MinWidth="400" Width="400">
+        Title="LoginAddWindow" MinHeight="350" Height="350" MinWidth="500" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="50"></RowDefinition>
@@ -28,8 +28,9 @@
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="180"></ColumnDefinition>
-                <ColumnDefinition MinWidth="200"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+                <ColumnDefinition Width="9*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -39,14 +40,21 @@
             </Grid.RowDefinitions>
 
             <Label Margin="10" Grid.Row="0"  Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center">Name:</Label>
-            <TextBox Grid.Row="0" Grid.Column="1" Background="DarkGray" Margin="15"></TextBox>
+            <TextBox x:Name="a" Grid.Row="0" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Background="DarkGray" Margin="15"></TextBox>
 
             <Label Margin="10" VerticalAlignment="Center" Grid.Row="1"  Foreground="AliceBlue" FontSize="20">SavedLogin:</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Background="DarkGray"  Margin="15"></TextBox>
+            <TextBox x:Name="b" Text="{Binding SavedLogin, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Background="DarkGray"  Margin="15"></TextBox>
 
             <Label Margin="10" VerticalAlignment="Center" Grid.Row="2"  Foreground="AliceBlue" FontSize="20">SavedPassword:</Label>
-            <PasswordBox Grid.Row="2" Grid.Column="1" Background="DarkGray"  Margin="15"></PasswordBox>
+            <TextBox x:Name="c" Text="{Binding SavedPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Background="DarkGray"  Margin="15"></TextBox>
+            
+            <Button Grid.Row="0" Grid.Column="3"  Click="ClearTextClick" Uid="1"  Content="Clear" HorizontalAlignment="Right"  FontSize="16"/>
+            <Button Grid.Row="1" Grid.Column="3" Click="ClearTextClick" Uid="2"  Content="Clear" HorizontalAlignment="Right"     FontSize="16"/>
+            <Button Grid.Row="2" Grid.Column="3" Click="ClearTextClick" Uid="2"  Content="Clear" HorizontalAlignment="Right"     FontSize="16"/>
 
+            <Button Grid.Row="0" Grid.Column="3" Click="PasteTextToBox" Uid="1"  Content="Paste" HorizontalAlignment="Left"     FontSize="16"/>
+            <Button Grid.Row="1" Grid.Column="3" Click="PasteTextToBox" Uid="2"  Content="Paste" HorizontalAlignment="Left"    FontSize="16"/>
+            <Button Grid.Row="2" Grid.Column="3" Click="PasteTextToBox" Uid="2"  Content="Paste" HorizontalAlignment="Left"    FontSize="16"/>
             <CheckBox Grid.Row="3" Grid.Column="0" Foreground="AliceBlue" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center">IsFavourite</CheckBox>
         </Grid>
 
@@ -56,7 +64,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"  Margin="10">Cancel</Button>
-            <Button Grid.Column="1"  Margin="10">Add</Button>
+            <Button Grid.Column="1"  Margin="10" Click="AddAccountClick" >Add</Button>
         </Grid>
 
 

@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using data_access_library;
 using Microsoft.Data.SqlClient;
-using MySql.Data.MySqlClient;
 using static data_access_library.PasswordManagerDbContext;
 
 namespace ClientApp
@@ -62,7 +61,7 @@ namespace ClientApp
                 if (Password_d.Password == PasswordConfrim_d.Password)
                 {
 
-                    User user = new User { Login=Username.Text,Password=Password_d.Password };                   
+                    LoginItem user = new LoginItem { Login=Username.Text,Password=Password_d.Password };                   
                     // string hash = Hash(Password_d.Password);
                     // MessageBox.Show(hash);
                     MainWindow main = new MainWindow();

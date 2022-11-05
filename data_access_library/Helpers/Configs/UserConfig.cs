@@ -4,9 +4,9 @@ using static data_access_library.PasswordManagerDbContext;
 
 namespace data_access_library.Helpers.Config
 {
-    internal class UserConfig : IEntityTypeConfiguration<User>
+    internal class UserConfig : IEntityTypeConfiguration<LoginItem>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<LoginItem> builder)
         {
             builder.Property(u => u.Login).IsRequired().HasMaxLength(100);
             builder.Property(u => u.Password).IsRequired().HasMaxLength(100);

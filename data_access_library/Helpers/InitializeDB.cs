@@ -26,9 +26,9 @@ namespace data_access_library.Helpers
 
         public static void SeedUsers(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(
+            modelBuilder.Entity<LoginItem>().HasData(
             
-                new User
+                new LoginItem
                 {
                    Id = 1,
                    Login = "Login1",
