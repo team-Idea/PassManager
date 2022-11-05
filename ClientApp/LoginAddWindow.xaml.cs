@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace ClientApp
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for LoginAddWindow.xaml
     /// </summary>
     public partial class LoginAddWindow : Window
     {
