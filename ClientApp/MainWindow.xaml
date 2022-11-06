@@ -5,7 +5,7 @@
         xmlns:viewmodels="clr-namespace:ClientApp.viewModel"
         xmlns:controls="clr-namespace:ClientApp.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib" 
         ResizeMode="CanResizeWithGrip"
-        Title="MainWindow" MinHeight="450" MinWidth="750" Height="600" Width="1000">
+        Title="MainWindow" MinHeight="550" MinWidth="1000" Height="550" Width="1000">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="Textbox1">
             <Setter Property="Padding" Value="7"/>
@@ -136,14 +136,6 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Border CornerRadius="0" Grid.RowSpan="2">
-                                <Border.Background>
-                                    <LinearGradientBrush>
-                                        <GradientStop Color="#7be9f6" Offset="0.0"/>
-                                        <GradientStop Color="#f083da" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                            </Border>
                             <Label Grid.Column="0" Grid.Row="1" Content="Name" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
                             <Label Grid.Column="0" Grid.Row="2" Content="SavedLogin" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
                             <Label Grid.Column="0" Grid.Row="3" Content="SavedPassword" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
@@ -205,27 +197,8 @@
                 </Grid>
             </DockPanel>
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="35"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Border Grid.RowSpan="2">
-                <Border.Background>
-                    <LinearGradientBrush>
-                        <GradientStop Color="#7be9f6" Offset="0.0"/>
-                        <GradientStop Color="#f083da" Offset="3"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-            <TextBlock Grid.Row="0" Margin="5" FontSize="20" Foreground="AliceBlue">All Species</TextBlock>
-            <Button Command="{Binding DeleteAccountCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="2">Delete Account</Button>
-            <Button Command="{Binding AutoShowContentPanelCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="1">Edit Account</Button>
-        </Grid>
-        <Grid Grid.Column="0" Grid.Row="4">
+        
+        <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
             <Grid.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#7be9f6" Offset="0.0"/>
@@ -237,18 +210,22 @@
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="35"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition MaxHeight="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             
-            <TextBlock Margin="5,0,0,0" Grid.Row="0" FontSize="20" Foreground="AliceBlue" Grid.ColumnSpan="2">Security Tools</TextBlock>
-            <Button HorizontalContentAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,0,5,5"  >Generate Password</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" Margin="5" Height="40"  Grid.RowSpan="3">Password Health</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" >Account Settings</Button>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Grid.Row="0" FontSize="20" Foreground="AliceBlue" Grid.ColumnSpan="2">Security Tools</TextBlock>
+
+            <Button Command="{Binding AutoShowContentPanelCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" Height="40">Edit Account</Button>
+            <Button Command="{Binding DeleteAccountCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2" Height="40">Delete Account</Button>
+
+            <Button HorizontalContentAlignment="Left" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,0,5,5" Height="40" >Generate Password</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Height="40">Password Health</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="5" Grid.ColumnSpan="2" Margin="5" Height="40">Account Settings</Button>
             
 
         </Grid>

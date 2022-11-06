@@ -73,7 +73,5 @@ namespace ClientApp
         {
             AnimateContentPanelWidth(450, 0);
         }
-
- 
     }
 }
