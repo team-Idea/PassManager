@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\1000915.png" />
     <None Remove="Resources\add – копія %282%29.png" />
     <None Remove="Resources\addAccountIcon.png" />
     <None Remove="Resources\arrow-right-light – копія.png" />
@@ -42,6 +43,7 @@
     <None Remove="Resources\register.40.png" />
     <None Remove="Resources\register.png" />
     <None Remove="Resources\registered.jpg" />
+    <None Remove="Resources\registration-icon-png.jpg" />
     <None Remove="Resources\saveBackupIcon.png" />
     <None Remove="Resources\saveDirectoryIcon.png" />
     <None Remove="Resources\settings.cancel.40.png" />
@@ -68,6 +70,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\1000915.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\add – копія (2).png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -165,6 +170,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\registered.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\registration-icon-png.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\saveBackupIcon.png">

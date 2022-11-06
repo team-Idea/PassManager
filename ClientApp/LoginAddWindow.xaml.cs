@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ClientApp.viewModel;
+using data_access_library;
 using static data_access_library.PasswordManagerDbContext;
 
 namespace ClientApp
@@ -12,15 +15,28 @@ namespace ClientApp
     public partial class LoginAddWindow : Window
     {
         public Login_Item LoginModel = new Login_Item();
+
         public Action AddLoginCallback { get; set;}
 
+        PasswordManagerDbContext context=new PasswordManagerDbContext();
+
+        public MainViewModel ViewModel { get; set; }
         public LoginAddWindow()
         {
             InitializeComponent();
-           
+
             DataContext = LoginModel;
         }
-       
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+
+            }
+        }
+
+
         public void ResetAccountContext()
         {
             LoginModel = new Login_Item();
@@ -68,6 +84,11 @@ namespace ClientApp
             if (a.Text == "" || b.Text == "" || c.Text == "") { MessageBox.Show("lines are empty"); }
             else if (a.Text == a.Text || b.Text == b.Text||c.Text==c.Text) { AddLoginCallbackFunc(); this.Hide(); }
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }

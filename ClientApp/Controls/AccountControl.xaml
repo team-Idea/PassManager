@@ -41,24 +41,24 @@
                    FontSize="15"
                    TextTrimming="CharacterEllipsis"/>
         </Grid>
-        <Grid Grid.Column="2" HorizontalAlignment="Right" Width="auto" Margin="10">
+        <Grid Grid.Column="2" HorizontalAlignment="Right" Width="500" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy Name" FontSize="15" Grid.Column="0" Width="auto">
+            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy Name" Height="30" FontSize="10" Grid.Column="0" Width="130">
                 <Button.CommandParameter>
                     <system:Int32>2</system:Int32>
                 </Button.CommandParameter>
             </Button>
 
-            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy SavedLogin"    FontSize="15" Grid.Column="1" Width="auto">
+            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy SavedLogin" Height="30"  FontSize="10" Grid.Column="1" Width="130">
                 <Button.CommandParameter>
                     <system:Int32>3</system:Int32>
                 </Button.CommandParameter>
             </Button>
-            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy SavedPassword"    FontSize="15" Grid.Column="2" Width="auto">
+            <Button Command="{Binding SetClipboardCommand, Mode=OneTime}" Content="Copy SavedPassword" Height="30"  FontSize="10" Grid.Column="2" Width="130">
                 <Button.CommandParameter>
                     <system:Int32>3</system:Int32>
                 </Button.CommandParameter>

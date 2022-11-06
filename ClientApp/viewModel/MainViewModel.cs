@@ -184,7 +184,19 @@ namespace ClientApp.viewModel
 
         public void DeleteSelectedLogin()
         {
-            if (AccountIsSelected && AccountsArePresent) AccountsList.RemoveAt(SelectedIndex);
+            if (AccountIsSelected && AccountsArePresent)
+            {
+                AccountsList.RemoveAt(SelectedIndex);
+
+                //context.Logins.Remove(new Login_Item() 
+                //{
+                //    Name = SelectedAccount.Login.Name,
+                //    SavedLogin = SelectedAccount.Login.SavedLogin,
+                //    IsFavourite = SelectedAccount.Login.IsFavourite,
+                //    UserId = CurrentUser.Id
+                //});
+                //context.SaveChanges();
+            }
         }
 
         public void ShowAddLoginWindow()

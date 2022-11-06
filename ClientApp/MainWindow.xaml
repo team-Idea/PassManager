@@ -4,17 +4,84 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewmodels="clr-namespace:ClientApp.viewModel"
         xmlns:controls="clr-namespace:ClientApp.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib" 
-       
         ResizeMode="CanResizeWithGrip"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignDarkBackground}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" MinHeight="450" MinWidth="750" Height="600" Width="1000">
+        Title="MainWindow" MinHeight="550" MinWidth="1000" Height="550" Width="1000">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="Textbox1">
+            <Setter Property="Padding" Value="7"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="Pink"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MinHeight" Value="20"/>
+            <Setter Property="MinWidth" Value="250"/>
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border"
+                            CornerRadius="30"
+                            BorderBrush="Pink"
+                            BorderThickness="2"
+                            Background="#fff">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                            Focusable="false"
+                            HorizontalScrollBarVisibility="Hidden"
+                            VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="HotPink"/>
+                                <Setter Property="Foreground" Value="HotPink" />
+
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Foreground" Value="CornflowerBlue" />
+                                <Setter Property="BorderBrush" TargetName="border" Value="CornflowerBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontWeight" Value="Light"/>
+
+
+
+
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="20"
+                                                                      BorderThickness="2"
+                                                                       BorderBrush="White">
+                            <ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Opacity" Value="0.4"/>
+                    <Setter Property="Foreground" Value="DeepSkyBlue"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+    </Window.Resources>
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#7be9f6" Offset="0.0"/>
+                <GradientStop Color="#f083da" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="250"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -25,24 +92,34 @@
             <RowDefinition Height="10"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-            
-        <Border Grid.Column="0" Grid.RowSpan="4" Background="Gray"></Border>
-        
-        <Border Grid.Column="1" BorderBrush="DarkGray" BorderThickness="2"></Border>
-
-        <Separator Grid.Column="0" Grid.Row="2"></Separator>
-
+      
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition MaxWidth="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="5" Grid.Column="0" Background="DarkGray" TextAlignment="Center"></TextBox>
+            <Border CornerRadius="0" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7be9f6" Offset="0.0"/>
+                        <GradientStop Color="#f083da" Offset="3"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <TextBox Margin="5" Style="{StaticResource Textbox1}" TextAlignment="Center" Grid.Column="0" Background="WhiteSmoke"></TextBox>
             <Button Margin="5" Grid.Column="1">#</Button>
         </Grid>
-        <Button Command="{Binding ShowAddAccountWindowCommand}" HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5">Add new Login</Button>
+        <Button Command="{Binding ShowAddAccountWindowCommand}"   FontSize="22"  HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5">Add new Login</Button>
 
         <Grid Grid.Column="1" Width="auto"  Grid.Row="1" Grid.RowSpan="3">
+            <Border CornerRadius="0" Grid.RowSpan="2">
+                <Border.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#7be9f6" Offset="0.0"/>
+                        <GradientStop Color="#f083da" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
             <DockPanel>
                 <Grid DockPanel.Dock="Right" Width="0" x:Name="AccountPanel">
                     <Grid Width="450">
@@ -91,12 +168,18 @@
                                     <system:Int32>2</system:Int32>
                                 </Button.CommandParameter>
                             </Button>
-
                         </Grid>
-                        
                     </Grid>
                 </Grid>
                 <Grid Width="auto">
+                    <Border CornerRadius="0" Grid.RowSpan="2">
+                        <Border.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="#7be9f6" Offset="0.1"/>
+                                <GradientStop Color="#f083da" Offset="1.2"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
                     <Label Content="Login List" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="AliceBlue" Margin="0 5 0 0" FontSize="16"/>
                     <ListBox ItemsSource="{Binding AccountsList, UpdateSourceTrigger=PropertyChanged}"
                                      SelectedItem="{Binding SelectedAccount, UpdateSourceTrigger=PropertyChanged}" 
@@ -114,34 +197,39 @@
                 </Grid>
             </DockPanel>
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
+        
+        <Grid Grid.Column="0" Grid.Row="1" Grid.RowSpan="3">
+            <Grid.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#7be9f6" Offset="0.0"/>
+                    <GradientStop Color="#f083da" Offset="3"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="209*"/>
+                <ColumnDefinition Width="41*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="35"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition MaxHeight="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Margin="5" FontSize="20" Foreground="AliceBlue">All Species</TextBlock>
-            <Button Command="{Binding DeleteAccountCommand}" HorizontalContentAlignment="Left" Grid.Row="2">Delete Account</Button>
-            <Button Command="{Binding AutoShowContentPanelCommand}" HorizontalContentAlignment="Left" Grid.Row="1">Edit Account </Button>
+            
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Grid.Row="0" FontSize="20" Foreground="AliceBlue" Grid.ColumnSpan="2">Security Tools</TextBlock>
+
+            <Button Command="{Binding AutoShowContentPanelCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" Height="40">Edit Account</Button>
+            <Button Command="{Binding DeleteAccountCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2" Height="40">Delete Account</Button>
+
+            <Button HorizontalContentAlignment="Left" Grid.Row="3" Grid.ColumnSpan="2" Margin="5,0,5,5" Height="40" >Generate Password</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Height="40">Password Health</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="5" Grid.ColumnSpan="2" Margin="5" Height="40">Account Settings</Button>
+            
 
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="4">
-            <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="35"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <TextBlock Margin="5" Grid.Row="0" FontSize="20" Foreground="AliceBlue">Security Tools</TextBlock>
-            <Button HorizontalContentAlignment="Left" Grid.Row="1">Generate Password</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="2">Password Health</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="3">Account Settings</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="5" Click="Button_Click">Logout</Button>
-            
-        </Grid>
+        
     </Grid>
+    
 </Window>
