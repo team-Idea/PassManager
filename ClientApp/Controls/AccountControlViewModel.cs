@@ -12,11 +12,11 @@ namespace ClientApp.Controls
 {
     public class AccountControlViewModel : BaseViewModel
     {
-        private User _account;
-        public User Account
+        private Login_Item _login;
+        public Login_Item Login
         {
-            get => _account;
-            set => RaisePropertyChanged(ref _account, value);
+            get => _login;
+            set => RaisePropertyChanged(ref _login, value);
         }
 
         public ICommand SetClipboardCommand { get; }
@@ -32,8 +32,9 @@ namespace ClientApp.Controls
         {
             switch (accountInfoUid)
             {
-                case 1: Clipboard.SetText(Account.Login); break;
-                case 2: Clipboard.SetText(Account.Password); break;
+                case 1: Clipboard.SetText(Login.Name); break;
+                case 2: Clipboard.SetText(Login.SavedPassword); break;
+                case 3: Clipboard.SetText(Login.SavedLogin); break;
             }
         }
 

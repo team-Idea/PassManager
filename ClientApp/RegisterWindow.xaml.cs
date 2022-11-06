@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using data_access_library;
 using Microsoft.Data.SqlClient;
-using MySql.Data.MySqlClient;
 using static data_access_library.PasswordManagerDbContext;
 
 namespace ClientApp
@@ -57,16 +56,16 @@ namespace ClientApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Db.Users.FirstOrDefault(u => u.Login == Username.Text) == null)
+            if (Db.UsersData.FirstOrDefault(u => u.Login == Username.Text) == null)
             {
                 if (Password_d.Password == PasswordConfrim_d.Password)
                 {
 
-                    User user = new User { Login=Username.Text,Password=Password_d.Password };                   
+                    UserData user = new UserData { Login=Username.Text,Password=Password_d.Password };                   
                     // string hash = Hash(Password_d.Password);
                     // MessageBox.Show(hash);
-                    MainWindow main = new MainWindow();
-                    Db.Users.Add(user);
+                    MainWindow main = new MainWindow(user);
+                    Db.UsersData.Add(user);
                     Db.SaveChanges();
                     main.Show();
                     this.Close();

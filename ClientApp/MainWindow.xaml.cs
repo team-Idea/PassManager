@@ -24,21 +24,21 @@ namespace ClientApp
     public partial class MainWindow : Window
     {
         public MainViewModel ViewModel { get; set; }
-        public MainWindow()
+        public MainWindow(PasswordManagerDbContext.UserData user)
         {
            
             InitializeComponent();
-            PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
 
-            ViewModel = new MainViewModel();
+            ViewModel = new MainViewModel(user);
             this.DataContext = ViewModel;
-           // ViewModel.ScrollIntoView = ScrollIntoViewThingy;
+         
             ViewModel.ShowContentPanelCallback = this.ShowContentPanel;
             ViewModel.HideContentPanelCallback = this.HideContentPanel;
             HideContentPanel();
            
 
         }
+
         public void ScrollIntoViewThingy()
         {
             lBox.ScrollIntoView(lBox.SelectedItem);
@@ -74,6 +74,11 @@ namespace ClientApp
             AnimateContentPanelWidth(450, 0);
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow log = new LoginWindow();
+            log.Show();
+            this.Hide();
+        }
     }
 }

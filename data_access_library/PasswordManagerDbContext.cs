@@ -40,7 +40,7 @@ namespace data_access_library
         }
 
         //Collections
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserData> UsersData { get; set; }
         public DbSet<Login_Item> Logins { get; set; }
     }
 }
