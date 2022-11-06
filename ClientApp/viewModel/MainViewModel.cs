@@ -65,8 +65,7 @@ namespace ClientApp.viewModel
         public ICommand ShowAddAccountWindowCommand { get; set; }
         public ICommand ShowEditAccountWindowCommand { get; set; }
         public ICommand DeleteAccountCommand { get; set; }
-        public ICommand SaveAccountCommand { get; set; }
-        public ICommand LoadAccountCommand { get; set; }
+        public ICommand SortByFavourites { get; set; }
         public ICommand SearchAccountCommand { get; set; }
         public ICommand MoveAccountPositionCommand { get; set; }
         public ICommand AutoShowContentPanelCommand { get; set; }
@@ -113,7 +112,7 @@ namespace ClientApp.viewModel
             AutoShowContentPanelCommand = new Command(AutoSetContentPanelVisibility);
             CopyDetailsCommand = new CommandParam<int>(CopyDetailsToClipboard);
             SearchAccountCommand = new Command(SearchAccount);
-           
+            SortByFavourites = new Command(SortByFavourite);
         }
 
 
@@ -162,12 +161,19 @@ namespace ClientApp.viewModel
             else
             {
                 foreach (var item in context.Logins.Where(l => l.Name == SearchedName))
+                {
+                    AccountsList.Add(new AccountControlViewModel() { Login = item });
+                }
+            }
+        }
+        private void SortByFavourite()
+        {
+            AccountsList.Clear();
+            foreach (var item in context.Logins.Where(l => l.UserId == CurrentUser.Id && l.IsFavourite == true))
             {
                 AccountsList.Add(new AccountControlViewModel() { Login = item });
             }
-            }
         }
-
 
 
         public void AddLogin(Login_Item accountContent)
