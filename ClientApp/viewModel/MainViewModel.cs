@@ -25,7 +25,7 @@ namespace ClientApp.viewModel
         private bool contentPanelShowing;
         private AccountControlViewModel _selectedAccount;
         private UserData _currentUser;
-
+        private string searchedName;
         public ObservableCollection<AccountControlViewModel> AccountsList { get; set; }
      
 
@@ -34,7 +34,11 @@ namespace ClientApp.viewModel
             get => selectedIndex;
             set { RaisePropertyChanged(ref selectedIndex, value); }
         }
-
+        public string SearchedName
+        {
+            get => searchedName;
+            set { RaisePropertyChanged(ref searchedName, value); }
+        }
         public UserData CurrentUser
         {
             get => _currentUser;
@@ -60,7 +64,6 @@ namespace ClientApp.viewModel
         public ICommand LoadAccountCommand { get; set; }
         public ICommand SearchAccountCommand { get; set; }
         public ICommand MoveAccountPositionCommand { get; set; }
-        public ICommand ShowHelpWindowCommand { get; set; }
         public ICommand AutoShowContentPanelCommand { get; set; }
         public ICommand CopyDetailsCommand { get; set; }
 
@@ -103,7 +106,7 @@ namespace ClientApp.viewModel
             MoveAccountPositionCommand = new CommandParam<object>(MoveAccPos);
             AutoShowContentPanelCommand = new Command(AutoSetContentPanelVisibility);
             CopyDetailsCommand = new CommandParam<int>(CopyDetailsToClipboard);
-
+            SearchAccountCommand = new Command(SearchAccount);
            
         }
 
@@ -135,7 +138,7 @@ namespace ClientApp.viewModel
         }
 
         #endregion
-        #region Adding, Editing and Deleting Accounts
+        #region Adding,Search, Editing and Deleting Accounts 
 
        
         public void AddLogin() 
@@ -143,9 +146,17 @@ namespace ClientApp.viewModel
             AddLogin(LoginAddWindow.LoginModel); 
         }
 
-     
-       
-      
+        public void SearchAccount()
+        {
+            AccountsList.Clear();
+            foreach (var item in context.Logins.Where(l => l.Name == SearchedName))
+            {
+                AccountsList.Add(new AccountControlViewModel() { Login = item });
+            }
+        }
+
+
+
         public void AddLogin(Login_Item accountContent)
         {
             //e
@@ -186,16 +197,15 @@ namespace ClientApp.viewModel
         {
             if (AccountIsSelected && AccountsArePresent)
             {
+                var itemremove = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id);
+                if (itemremove != null)
+                {
+                    context.Logins.Remove(itemremove);
+                    context.SaveChanges();
+
+                }
                 AccountsList.RemoveAt(SelectedIndex);
 
-                //context.Logins.Remove(new Login_Item() 
-                //{
-                //    Name = SelectedAccount.Login.Name,
-                //    SavedLogin = SelectedAccount.Login.SavedLogin,
-                //    IsFavourite = SelectedAccount.Login.IsFavourite,
-                //    UserId = CurrentUser.Id
-                //});
-                //context.SaveChanges();
             }
         }
 
@@ -215,22 +225,9 @@ namespace ClientApp.viewModel
         {
             if (account?.Login != null)
             {
+               
                 if (!ContentPanelShowing) ShowContentPanel();
                 SelectedAccount = account;
-                //Login_Item item = context.Logins.Where(l => l.Id == account.Login.Id).FirstOrDefault();
-                //context.Logins.Remove(item);
-                //context.Logins.Add(new Login_Item() 
-                //{ 
-                //    Id = item.Id,
-                //    Name = account.Login.Name,
-                //    SavedLogin = account.Login.SavedLogin,
-                //    SavedPassword = account.Login.SavedPassword,
-                //    IsFavourite = account.Login.IsFavourite,
-                //    UserId = item.UserId,
-                 
-                //});
-
-                context.SaveChanges();
                   
             }
         }
@@ -289,6 +286,16 @@ namespace ClientApp.viewModel
         {
             if (ContentPanelShowing)
             {
+                var item = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id);
+                if (item != null)
+                {
+                    item.Id = SelectedAccount.Login.Id;
+                    item.Name = SelectedAccount.Login.Name;
+                    item.SavedLogin = SelectedAccount.Login.SavedLogin;
+                    item.SavedPassword = SelectedAccount.Login.SavedPassword;
+                    item.IsFavourite = SelectedAccount.Login.IsFavourite;
+                    context.SaveChanges();
+                }
                 HideContentPanelCallback?.Invoke();
                 ContentPanelShowing = false;
             }
