@@ -8,12 +8,16 @@ using Nest;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using static data_access_library.PasswordManagerDbContext;
+
+
 
 namespace ClientApp.viewModel
 {
@@ -21,6 +25,7 @@ namespace ClientApp.viewModel
     {
         PasswordManagerDbContext context;
         //Private fields
+        
         private int selectedIndex;
         private bool contentPanelShowing;
         private AccountControlViewModel _selectedAccount;
@@ -91,7 +96,7 @@ namespace ClientApp.viewModel
             context = new PasswordManagerDbContext();
             ShowLogins();
         }
-        void ShowLogins()
+        public void ShowLogins()
         {
             foreach (var item in context.Logins.Where(l => l.UserId == CurrentUser.Id))
             {
@@ -149,9 +154,16 @@ namespace ClientApp.viewModel
         public void SearchAccount()
         {
             AccountsList.Clear();
-            foreach (var item in context.Logins.Where(l => l.Name == SearchedName))
+            if (SearchedName == "")
+            {
+                ShowLogins();
+            }
+            else
+            {
+                foreach (var item in context.Logins.Where(l => l.Name == SearchedName))
             {
                 AccountsList.Add(new AccountControlViewModel() { Login = item });
+            }
             }
         }
 
@@ -310,5 +322,6 @@ namespace ClientApp.viewModel
                 case 2: Clipboard.SetText(SelectedAccount.Login.SavedPassword); break; 
             }
         }
+       
     }
 }

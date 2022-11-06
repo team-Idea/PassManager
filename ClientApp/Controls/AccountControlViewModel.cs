@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using static data_access_library.PasswordManagerDbContext;
-
 namespace ClientApp.Controls
 {
     public class AccountControlViewModel : BaseViewModel
@@ -18,6 +17,7 @@ namespace ClientApp.Controls
             get => _login;
             set => RaisePropertyChanged(ref _login, value);
         }
+
 
         public ICommand SetClipboardCommand { get; }
 

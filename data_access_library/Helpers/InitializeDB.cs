@@ -15,8 +15,8 @@ namespace data_access_library.Helpers
                 {
                    Id = 1,
                    Name = "Login1",
-                   SavedLogin = "Log11",
-                   SavedPassword = "Pass11",
+                   SavedLogin = "Log123",
+                   SavedPassword = "Pass123",
                    UserId = 1
                    
                 }
