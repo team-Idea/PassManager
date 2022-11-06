@@ -106,8 +106,8 @@
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
-            <TextBox Margin="5" Style="{StaticResource Textbox1}" TextAlignment="Center" Grid.Column="0" Background="WhiteSmoke"></TextBox>
-            <Button Margin="5" Grid.Column="1">#</Button>
+            <TextBox Margin="5" Text="{Binding SearchedName}" Style="{StaticResource Textbox1}" TextAlignment="Center" Grid.Column="0" Background="WhiteSmoke"></TextBox>
+            <Button  Command="{Binding SearchAccountCommand}" Margin="5" Grid.Column="1">Find</Button>
         </Grid>
         <Button Command="{Binding ShowAddAccountWindowCommand}"   FontSize="22"  HorizontalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="5">Add new Login</Button>
 
