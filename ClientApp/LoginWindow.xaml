@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
         mc:Ignorable="d"
         Title="Log Window" Height="450" Width="380"
         AllowsTransparency="True" Background="Transparent"
@@ -51,7 +53,7 @@
             </Grid.RowDefinitions>
 
 
-            <Border CornerRadius="10" Grid.RowSpan="2">
+            <Border CornerRadius="20" Grid.RowSpan="2">
                 <Border.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#7be9f6" Offset="0.0"/>
@@ -73,57 +75,40 @@
 
             <StackPanel Grid.Row="2" >
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="Username"
-                             FontFamily="Helvetica"
-                             FontWeight="Light"
-                             Text="Username"
-                             FontSize="20"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="235"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="63,0,0,0"/>
+                    <TextBox
+                        x:Name="Username"
+                        materialDesign:HintAssist.Hint="Username"
+                        Margin="63,0,0,0"
+                        Width="230">
+                        <TextBox.Text>
+                            <Binding
+                                 Path="Name"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <iconPacks:PackIconMaterial Kind="Account" 
                                                 VerticalAlignment="Center" 
                                                 HorizontalAlignment="Center" 
                                                 Foreground="White"/>
                 </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
+                
 
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <PasswordBox x:Name="Password" 
-                             FontFamily="Helvetica"
-                             FontWeight="Light"
-                             Password="Password"
-                             FontSize="20"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="235"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="63,0,0,0"/>
-                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                    <PasswordBox
+                        x:Name="Password"
+                        Style="{StaticResource MaterialDesignRevealPasswordBox}"
+                        IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Password1, Mode=TwoWay}"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Margin="63,0,0,0" Width="250"/>
+                    
                 </StackPanel>
 
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
+                
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,50,0,0">

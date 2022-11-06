@@ -74,11 +74,6 @@ namespace ClientApp
             AnimateContentPanelWidth(450, 0);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWindow log = new LoginWindow();
-            log.Show();
-            this.Hide();
-        }
+ 
     }
 }

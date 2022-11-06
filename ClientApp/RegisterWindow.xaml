@@ -69,20 +69,18 @@
 
             <StackPanel Grid.Row="3" >
                 <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="Username"
-                             FontFamily="Helvetica"
-                             FontWeight="Light"
-                             Text="Username"
-                             FontSize="20"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="235"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="63,0,0,0"/>
+                    <TextBox
+                        x:Name="Username"
+                        materialDesign:HintAssist.Hint="Username"
+                        Margin="63,0,0,0"
+                        Width="240">
+                        <TextBox.Text>
+                            <Binding
+                                 Path="Name"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
                     <iconPacks:PackIconMaterial Kind="Account" 
                                                 VerticalAlignment="Center" 
                                                 HorizontalAlignment="Center" 
@@ -96,44 +94,25 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                    <PasswordBox x:Name="Password_d" 
-                             FontFamily="Helvetica"
-                             FontWeight="Light"
-                             Password="Password"
-                             FontSize="20"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="235"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="63,0,0,0"/>
-                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                    <PasswordBox
+                        x:Name="Password_d"
+                        Style="{StaticResource MaterialDesignRevealPasswordBox}"
+                        IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Password1, Mode=TwoWay}"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Margin="63,0,0,0" Width="250"/>
+                   
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <PasswordBox x:Name="PasswordConfrim_d" 
-                             FontFamily="Helvetica"
-                             FontWeight="Light"
-                             Password="Password"
-                             FontSize="20"
-                             HorizontalAlignment="Center"
-                             Foreground="White"
-                             Background="Transparent"
-                             BorderThickness="0"
-                             Width="235"
-                             HorizontalContentAlignment="Left"
-                             Opacity="0.5"
-                             Height="25"
-                             Margin="63,0,0,0"/>
-                    <iconPacks:PackIconMaterial Kind="FormTextboxPassword" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
+                        Style="{StaticResource MaterialDesignRevealPasswordBox}"
+                        IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Password1, Mode=TwoWay}"
+                        materialDesign:HintAssist.Hint="Password"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        Margin="63,0,0,0" Width="250"/>
+                   
                 </StackPanel>
 
                 <Border Width="250"
