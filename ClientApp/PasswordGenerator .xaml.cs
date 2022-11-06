@@ -146,6 +146,11 @@ namespace ClientApp
         {
                Clipboard.SetText((string)password.Content);
         }
+
+        private void colse_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 
 
