@@ -17,8 +17,7 @@ namespace data_access_library.Helpers
                    Name = "Login1",
                    SavedLogin = "Log11",
                    SavedPassword = "Pass11",
-                   UserId = 1,
-                   CategoryId = 1
+                   UserId = 1
                    
                 }
             );
@@ -26,9 +25,9 @@ namespace data_access_library.Helpers
 
         public static void SeedUsers(this ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LoginItem>().HasData(
+            modelBuilder.Entity<UserData>().HasData(
             
-                new LoginItem
+                new UserData
                 {
                    Id = 1,
                    Login = "Login1",

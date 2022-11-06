@@ -56,16 +56,16 @@ namespace ClientApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Db.Users.FirstOrDefault(u => u.Login == Username.Text) == null)
+            if (Db.UsersData.FirstOrDefault(u => u.Login == Username.Text) == null)
             {
                 if (Password_d.Password == PasswordConfrim_d.Password)
                 {
 
-                    LoginItem user = new LoginItem { Login=Username.Text,Password=Password_d.Password };                   
+                    UserData user = new UserData { Login=Username.Text,Password=Password_d.Password };                   
                     // string hash = Hash(Password_d.Password);
                     // MessageBox.Show(hash);
-                    MainWindow main = new MainWindow();
-                    Db.Users.Add(user);
+                    MainWindow main = new MainWindow(user);
+                    Db.UsersData.Add(user);
                     Db.SaveChanges();
                     main.Show();
                     this.Close();

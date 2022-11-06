@@ -49,12 +49,12 @@ namespace ClientApp
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (context.Users.FirstOrDefault(u => u.Login == Username.Text) != null)
+            if (context.UsersData.FirstOrDefault(u => u.Login == Username.Text) != null)
             {
-                LoginItem user = context.Users.Where(u => u.Login == Username.Text).FirstOrDefault();
-                if (Password.Password ==user.Password)
+                UserData user = context.UsersData.Where(u => u.Login == Username.Text).FirstOrDefault();
+                if (Password.Password == user.Password)
                 {
-                    MainWindow min = new MainWindow();
+                    MainWindow min = new MainWindow(user);
                     min.Show();
                     this.Close();
                 }

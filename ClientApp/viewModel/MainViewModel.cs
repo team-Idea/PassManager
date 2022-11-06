@@ -1,6 +1,10 @@
 ﻿using ClientApp.Controls;
 using ClientApp.Entities;
 using data_access_library;
+using data_access_library.Repositories;
+using DocumentFormat.OpenXml.InkML;
+using Microsoft.EntityFrameworkCore;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,8 +24,8 @@ namespace ClientApp.viewModel
         private int selectedIndex;
         private bool contentPanelShowing;
         private AccountControlViewModel _selectedAccount;
+        private UserData _currentUser;
 
-      
         public ObservableCollection<AccountControlViewModel> AccountsList { get; set; }
      
 
@@ -31,7 +35,11 @@ namespace ClientApp.viewModel
             set { RaisePropertyChanged(ref selectedIndex, value); }
         }
 
-        
+        public UserData CurrentUser
+        {
+            get => _currentUser;
+            set => RaisePropertyChanged(ref _currentUser, value);
+        }
 
         public bool ContentPanelShowing
         {
@@ -69,18 +77,24 @@ namespace ClientApp.viewModel
         public Action HideContentPanelCallback { get; set; }
         public Action ScrollIntoView { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(UserData user)
         {
             AccountsList = new ObservableCollection<AccountControlViewModel>();
             LoginAddWindow = new LoginAddWindow();
-          
             SetupCommandBindings();
-
+            CurrentUser = user;
             LoginAddWindow.AddLoginCallback = this.AddLogin;
 
             context = new PasswordManagerDbContext();
-           }
-
+            ShowLogins();
+        }
+        void ShowLogins()
+        {
+            foreach (var item in context.Logins.Where(l => l.UserId == CurrentUser.Id))
+            {
+                AccountsList.Add(new AccountControlViewModel() { Login = item });
+            }
+        }
         private void SetupCommandBindings()
         {
             ShowAddAccountWindowCommand = new Command(ShowAddLoginWindow);
@@ -139,16 +153,20 @@ namespace ClientApp.viewModel
 
             AddLogin(account);
             LoginAddWindow.ResetAccountContext();
-            context.Logins.Add(new Login_Item() {
-                Name = accountContent.Name,
-                SavedLogin = accountContent.SavedLogin,
-                SavedPassword = accountContent.SavedPassword,
-            });
+
         }
 
         public void AddLogin(AccountControlViewModel account)
         {
             AccountsList.Add(account);
+            context.Logins.Add(new Login_Item() {
+                Name = account.Login.Name,
+                SavedLogin = account.Login.SavedLogin,
+                SavedPassword = account.Login.SavedPassword,
+                IsFavourite = account.Login.IsFavourite,
+                UserId = CurrentUser.Id
+            });
+            context.SaveChanges();
         }
 
         public AccountControlViewModel CreateLogintItem(Login_Item accountDetails)
@@ -171,6 +189,7 @@ namespace ClientApp.viewModel
 
         public void ShowAddLoginWindow()
         {
+            
             LoginAddWindow.Show();
             LoginAddWindow.Focus();
         }
@@ -186,6 +205,21 @@ namespace ClientApp.viewModel
             {
                 if (!ContentPanelShowing) ShowContentPanel();
                 SelectedAccount = account;
+                //Login_Item item = context.Logins.Where(l => l.Id == account.Login.Id).FirstOrDefault();
+                //context.Logins.Remove(item);
+                //context.Logins.Add(new Login_Item() 
+                //{ 
+                //    Id = item.Id,
+                //    Name = account.Login.Name,
+                //    SavedLogin = account.Login.SavedLogin,
+                //    SavedPassword = account.Login.SavedPassword,
+                //    IsFavourite = account.Login.IsFavourite,
+                //    UserId = item.UserId,
+                 
+                //});
+
+                context.SaveChanges();
+                  
             }
         }
         #endregion

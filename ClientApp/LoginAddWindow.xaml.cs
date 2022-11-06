@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static data_access_library.PasswordManagerDbContext;
 
 namespace ClientApp
@@ -20,7 +11,7 @@ namespace ClientApp
     /// </summary>
     public partial class LoginAddWindow : Window
     {
-        public Login_Item LoginModel=new Login_Item();
+        public Login_Item LoginModel = new Login_Item();
         public Action AddLoginCallback { get; set;}
 
         public LoginAddWindow()
@@ -40,15 +31,15 @@ namespace ClientApp
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
-            this.Hide();
+            this.Close();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
-                case Key.Escape: this.Hide(); break;
-                case Key.Enter: AddLoginCallbackFunc(); this.Hide(); break;
+                case Key.Escape: this.Close(); break;
+                case Key.Enter: AddLoginCallbackFunc(); this.Close(); break;
             }
         }
 

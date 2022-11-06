@@ -24,13 +24,12 @@ namespace ClientApp
     public partial class MainWindow : Window
     {
         public MainViewModel ViewModel { get; set; }
-        public MainWindow()
+        public MainWindow(PasswordManagerDbContext.UserData user)
         {
            
             InitializeComponent();
-            PasswordManagerDbContext dbContext = new PasswordManagerDbContext();
 
-            ViewModel = new MainViewModel();
+            ViewModel = new MainViewModel(user);
             this.DataContext = ViewModel;
          
             ViewModel.ShowContentPanelCallback = this.ShowContentPanel;
@@ -39,6 +38,7 @@ namespace ClientApp
            
 
         }
+
         public void ScrollIntoViewThingy()
         {
             lBox.ScrollIntoView(lBox.SelectedItem);

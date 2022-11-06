@@ -4,7 +4,7 @@ namespace data_access_library
 {
     public partial class PasswordManagerDbContext
     {
-        public class LoginItem
+        public class UserData
         {
             public int Id { get; set; }
             public string Login { get; set; }

@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using data_access_library;
 
 namespace data_access_library.Migrations
 {
     [DbContext(typeof(PasswordManagerDbContext))]
-    [Migration("20221104145832_InitialDB")]
-    partial class InitialDB
+    partial class PasswordManagerDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +24,6 @@ namespace data_access_library.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsFavourite")
                         .ValueGeneratedOnAdd()
@@ -63,7 +58,6 @@ namespace data_access_library.Migrations
                         new
                         {
                             Id = 1,
-                            CategoryId = 1,
                             IsFavourite = false,
                             Name = "Login1",
                             SavedLogin = "Log11",
@@ -72,7 +66,7 @@ namespace data_access_library.Migrations
                         });
                 });
 
-            modelBuilder.Entity("data_access_library.PasswordManagerDbContext+User", b =>
+            modelBuilder.Entity("data_access_library.PasswordManagerDbContext+UserData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +85,7 @@ namespace data_access_library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("UsersData");
 
                     b.HasData(
                         new
@@ -104,7 +98,7 @@ namespace data_access_library.Migrations
 
             modelBuilder.Entity("data_access_library.PasswordManagerDbContext+Login_Item", b =>
                 {
-                    b.HasOne("data_access_library.PasswordManagerDbContext+User", "User")
+                    b.HasOne("data_access_library.PasswordManagerDbContext+UserData", "User")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -113,7 +107,7 @@ namespace data_access_library.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("data_access_library.PasswordManagerDbContext+User", b =>
+            modelBuilder.Entity("data_access_library.PasswordManagerDbContext+UserData", b =>
                 {
                     b.Navigation("Logins");
                 });
