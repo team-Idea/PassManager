@@ -85,7 +85,7 @@
             <RowDefinition MaxHeight="60"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Border CornerRadius="30" Grid.RowSpan="2">
+        <Border CornerRadius="0" Grid.RowSpan="2">
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#7be9f6" Offset="0.0"/>
