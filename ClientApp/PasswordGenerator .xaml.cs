@@ -139,5 +139,14 @@ namespace ClientApp
             addSymbols = false;
         }
         #endregion
+
+      
+
+        private void copy_Click_1(object sender, RoutedEventArgs e)
+        {
+               Clipboard.SetText((string)password.Content);
+        }
     }
+
+
 }

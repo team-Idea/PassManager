@@ -35,8 +35,16 @@ namespace ClientApp
             ViewModel.ShowContentPanelCallback = this.ShowContentPanel;
             ViewModel.HideContentPanelCallback = this.HideContentPanel;
             HideContentPanel();
-           
+          
+        }
 
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+
+            }
         }
 
         public void ScrollIntoViewThingy()

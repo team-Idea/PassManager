@@ -4,8 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewmodels="clr-namespace:ClientApp.viewModel"
         xmlns:controls="clr-namespace:ClientApp.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib" 
-        ResizeMode="CanResizeWithGrip"
-        Title="MainWindow" MinHeight="550" MinWidth="1000" Height="550" Width="1000">
+       
+        Title="MainWindow" MinHeight="550" MinWidth="1000" Height="550" Width="1000"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStyle="None" ResizeMode="NoResize"
+        MouseDown="MainWindow_OnMouseDown">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="Textbox1">
             <Setter Property="Padding" Value="7"/>
