@@ -35,8 +35,16 @@ namespace ClientApp
             ViewModel.ShowContentPanelCallback = this.ShowContentPanel;
             ViewModel.HideContentPanelCallback = this.HideContentPanel;
             HideContentPanel();
-           
+          
+        }
 
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+
+            }
         }
 
         public void ScrollIntoViewThingy()
@@ -72,6 +80,18 @@ namespace ClientApp
         public void HideContentPanel()
         {
             AnimateContentPanelWidth(450, 0);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PasswordGenerator ps = new PasswordGenerator();
+            ps.Show();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
