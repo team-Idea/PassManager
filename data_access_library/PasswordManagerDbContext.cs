@@ -29,8 +29,8 @@ namespace data_access_library
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+ 
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new LoginConfig());
 
@@ -42,5 +42,6 @@ namespace data_access_library
         //Collections
         public DbSet<UserData> UsersData { get; set; }
         public DbSet<Login_Item> Logins { get; set; }
+
     }
 }

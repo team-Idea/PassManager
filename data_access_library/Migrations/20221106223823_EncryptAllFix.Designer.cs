@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using data_access_library;
 
 namespace data_access_library.Migrations
 {
     [DbContext(typeof(PasswordManagerDbContext))]
-    partial class PasswordManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221106223823_EncryptAllFix")]
+    partial class EncryptAllFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
