@@ -79,6 +79,7 @@
         </Style>
     </Window.Resources>
     <Grid>
+        
         <Grid.Background>
             <LinearGradientBrush>
                 <GradientStop Color="#7be9f6" Offset="0.0"/>
