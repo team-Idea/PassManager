@@ -73,5 +73,17 @@ namespace ClientApp
         {
             AnimateContentPanelWidth(450, 0);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            PasswordGenerator ps = new PasswordGenerator();
+            ps.Show();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
