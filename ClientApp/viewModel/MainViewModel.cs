@@ -98,6 +98,7 @@ namespace ClientApp.viewModel
         }
         public void ShowLogins()
         {
+            AccountsList.Clear();
             foreach (var item in context.Logins.Where(l => l.UserId == CurrentUser.Id))
             {
                 AccountsList.Add(new AccountControlViewModel() { Login = item });
@@ -175,6 +176,7 @@ namespace ClientApp.viewModel
             AccountControlViewModel account = CreateLogintItem(accountContent);
 
             AddLogin(account);
+            ShowLogins();
             LoginAddWindow.ResetAccountContext();
 
         }
