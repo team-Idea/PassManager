@@ -18,8 +18,6 @@ namespace ClientApp
 
         public Action AddLoginCallback { get; set;}
 
-        PasswordManagerDbContext context=new PasswordManagerDbContext();
-
         public MainViewModel ViewModel { get; set; }
         public LoginAddWindow()
         {
