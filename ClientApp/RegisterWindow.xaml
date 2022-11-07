@@ -70,10 +70,11 @@
             <StackPanel Grid.Row="3" >
                 <StackPanel Orientation="Horizontal">
                     <TextBox
+                          Foreground="AliceBlue"
                         x:Name="Username"
                         materialDesign:HintAssist.Hint="Username"
                         Margin="63,0,0,0"
-                        Width="240">
+                        Width="250">
                         <TextBox.Text>
                             <Binding
                                  Path="Name"
@@ -81,20 +82,13 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <iconPacks:PackIconMaterial Kind="Account" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
                 </StackPanel>
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
 
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                     <PasswordBox
+                        Foreground="AliceBlue"
                         x:Name="Password_d"
                         Style="{StaticResource MaterialDesignRevealPasswordBox}"
                         IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
@@ -106,6 +100,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <PasswordBox x:Name="PasswordConfrim_d" 
+                        Foreground="AliceBlue"
                         Style="{StaticResource MaterialDesignRevealPasswordBox}"
                         IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
                         materialDesign:PasswordBoxAssist.Password="{Binding Password1, Mode=TwoWay}"
@@ -115,10 +110,6 @@
                    
                 </StackPanel>
 
-                <Border Width="250"
-                        Height="2"
-                        Background="White"
-                        Opacity="0.5"/>
 
 
 
