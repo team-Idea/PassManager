@@ -286,7 +286,7 @@ namespace ClientApp.viewModel
                
                 if (!ContentPanelShowing) ShowContentPanel();
                 SelectedAccount = account;
-                  
+                
             }
         }
         #endregion
@@ -345,7 +345,7 @@ namespace ClientApp.viewModel
             if (ContentPanelShowing)
             {
                 var item = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id);
-                if (item != null)
+                if (item != null && SelectedAccount.Login.Name != "" && SelectedAccount.Login.SavedLogin != "" && SelectedAccount.Login.SavedPassword != "")
                 {
                     item.Id = SelectedAccount.Login.Id;
                     item.Name = SelectedAccount.Login.Name;
@@ -353,9 +353,13 @@ namespace ClientApp.viewModel
                     item.SavedPassword = SelectedAccount.Login.SavedPassword;
                     item.IsFavourite = SelectedAccount.Login.IsFavourite;
                     context.SaveChanges();
+                    HideContentPanelCallback?.Invoke();
+                    ContentPanelShowing = false;
                 }
-                HideContentPanelCallback?.Invoke();
-                ContentPanelShowing = false;
+                else
+                {
+                    MessageBox.Show("All lines must be filled");
+                }
             }
         }
 
