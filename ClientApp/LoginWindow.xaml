@@ -76,6 +76,7 @@
             <StackPanel Grid.Row="2" >
                 <StackPanel Orientation="Horizontal">
                     <TextBox
+                        Foreground="AliceBlue"
                         x:Name="Username"
                         materialDesign:HintAssist.Hint="Username"
                         Margin="63,0,0,0"
@@ -93,7 +94,7 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <PasswordBox
+                    <PasswordBox Foreground="AliceBlue"
                         x:Name="Password"
                         Style="{StaticResource MaterialDesignRevealPasswordBox}"
                         IsEnabled="{Binding ElementName=RevealPasswordDefaultEnabled, Path=IsChecked}"
