@@ -247,7 +247,7 @@ namespace ClientApp.viewModel
             {
                 if (AccountIsSelected && AccountsArePresent)
                 {
-                    var itemremove = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id);
+                    var itemremove = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id && l.UserId == CurrentUser.Id);
                     if (itemremove != null)
                     {
                         context.Logins.Remove(itemremove);
