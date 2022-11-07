@@ -70,7 +70,7 @@ namespace ClientApp.viewModel
         public ICommand MoveAccountPositionCommand { get; set; }
         public ICommand AutoShowContentPanelCommand { get; set; }
         public ICommand CopyDetailsCommand { get; set; }
-
+        public ICommand ShowLoginsCommand { get; set; }
 
         //Some helpers
         public bool[] KeysDown = new bool[200];
@@ -113,6 +113,7 @@ namespace ClientApp.viewModel
             CopyDetailsCommand = new CommandParam<int>(CopyDetailsToClipboard);
             SearchAccountCommand = new Command(SearchAccount);
             SortByFavourites = new Command(SortByFavourite);
+            ShowLoginsCommand = new Command(ShowLogins);
         }
 
 
