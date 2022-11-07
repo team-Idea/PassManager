@@ -69,7 +69,7 @@ namespace ClientApp
             TextBox pBox = sender as TextBox;
 
             int numberOfDigits = 0, numberOfLetters = 0, numberOfSymbols = 0;
-            
+
             foreach (char c in pBox.Text)
             {
                 if (char.IsDigit(c))
@@ -86,21 +86,25 @@ namespace ClientApp
                 }
             }
 
-            if (numberOfDigits > 0 && numberOfSymbols > 0 && numberOfLetters > 0 && pBox.Text.Length >= 12)
-            {
-                indicator.Text = "very strong";
-            }
-            else if (numberOfLetters.Equals(0) && numberOfSymbols.Equals(0) && pBox.Text.Length>0)
+            if (numberOfLetters.Equals(0) && numberOfSymbols.Equals(0) && pBox.Text.Length > 0 && pBox.Text.Length < 6 ||
+                numberOfDigits.Equals(0) && numberOfSymbols.Equals(0) && pBox.Text.Length > 0 && pBox.Text.Length < 6 || 
+                numberOfDigits.Equals(0) && numberOfLetters.Equals(0) && pBox.Text.Length > 0 && pBox.Text.Length < 6)
             {
                 indicator.Text = "weak";
             }
-            else if(numberOfLetters > 0 && numberOfSymbols > 0&& numberOfLetters>0  &&pBox.Text.Length>=6&&pBox.Text.Length<12)
+            else if (numberOfLetters.Equals(0) && pBox.Text.Length >= 6 && pBox.Text.Length < 12 ||
+                numberOfDigits.Equals(0) && pBox.Text.Length >= 6 && pBox.Text.Length < 12 ||
+                numberOfSymbols.Equals(0) && pBox.Text.Length >= 6 && pBox.Text.Length < 12)
             {
                 indicator.Text = "strong";
             }
-            else
+            else if(pBox.Text.Length == 0)
             {
                 indicator.Text = " ";
+            }
+            else
+            {
+                indicator.Text = "very strong";
             }
         }
 
@@ -112,8 +116,8 @@ namespace ClientApp
 
 
 
-     
+
     }
-   
+
 
 }
