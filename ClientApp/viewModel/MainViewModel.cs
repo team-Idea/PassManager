@@ -153,25 +153,45 @@ namespace ClientApp.viewModel
 
         public void SearchAccount()
         {
-            AccountsList.Clear();
-            if (SearchedName == "")
+            if(AccountsList.Count > 0)
             {
-                ShowLogins();
+                if (SearchedName == "")
+                {
+                    ShowLogins();
+                }
+                else if(context.Logins.Any(l => l.Name == SearchedName && l.UserId == CurrentUser.Id))
+                {
+                    AccountsList.Clear();
+                    foreach (var item in context.Logins.Where(l => l.Name == SearchedName && l.UserId == CurrentUser.Id))
+                    {
+                        AccountsList.Add(new AccountControlViewModel() { Login = item });
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There is no logins with that name in database");
+                    ShowLogins();
+                }
             }
             else
             {
-                foreach (var item in context.Logins.Where(l => l.Name == SearchedName))
+                MessageBox.Show("There is no logins in database");
+            }
+        }
+
+        private void SortByFavourite()
+        {
+            if (context.Logins.Any(l => l.UserId == CurrentUser.Id && l.IsFavourite == true))
+            {
+                AccountsList.Clear();
+                foreach (var item in context.Logins.Where(l => l.UserId == CurrentUser.Id && l.IsFavourite == true))
                 {
                     AccountsList.Add(new AccountControlViewModel() { Login = item });
                 }
             }
-        }
-        private void SortByFavourite()
-        {
-            AccountsList.Clear();
-            foreach (var item in context.Logins.Where(l => l.UserId == CurrentUser.Id && l.IsFavourite == true))
+            else
             {
-                AccountsList.Add(new AccountControlViewModel() { Login = item });
+                MessageBox.Show("There is no favourite logins in database");
             }
         }
 
@@ -189,15 +209,22 @@ namespace ClientApp.viewModel
 
         public void AddLogin(AccountControlViewModel account)
         {
-            AccountsList.Add(account);
-            context.Logins.Add(new Login_Item() {
-                Name = account.Login.Name,
-                SavedLogin = account.Login.SavedLogin,
-                SavedPassword = account.Login.SavedPassword,
-                IsFavourite = account.Login.IsFavourite,
-                UserId = CurrentUser.Id
-            });
-            context.SaveChanges();
+            if(context.Logins.Any(l => l.Name == account.Login.Name && l.SavedLogin == account.Login.SavedLogin && l.SavedPassword == account.Login.SavedPassword && l.UserId == CurrentUser.Id))
+            {
+                MessageBox.Show("There is already same login in database");
+            }
+            else
+            {
+                AccountsList.Add(account);
+                context.Logins.Add(new Login_Item() {
+                    Name = account.Login.Name,
+                    SavedLogin = account.Login.SavedLogin,
+                    SavedPassword = account.Login.SavedPassword,
+                    IsFavourite = account.Login.IsFavourite,
+                    UserId = CurrentUser.Id
+                });
+                context.SaveChanges();
+            }
         }
 
         public AccountControlViewModel CreateLogintItem(Login_Item accountDetails)
@@ -215,17 +242,27 @@ namespace ClientApp.viewModel
 
         public void DeleteSelectedLogin()
         {
-            if (AccountIsSelected && AccountsArePresent)
+            if(context.Logins.Any())
             {
-                var itemremove = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id);
-                if (itemremove != null)
+                if (AccountIsSelected && AccountsArePresent)
                 {
-                    context.Logins.Remove(itemremove);
-                    context.SaveChanges();
+                    var itemremove = context.Logins.SingleOrDefault(l => l.Id == SelectedAccount.Login.Id);
+                    if (itemremove != null)
+                    {
+                        context.Logins.Remove(itemremove);
+                        context.SaveChanges();
 
+                    }
+                    AccountsList.RemoveAt(SelectedIndex);
                 }
-                AccountsList.RemoveAt(SelectedIndex);
-
+                else
+                {
+                    MessageBox.Show("Select account that you want to delete");
+                }
+            }
+            else
+            {
+                MessageBox.Show("There is no accounts in database");
             }
         }
 
