@@ -65,7 +65,7 @@
 
             <StackPanel VerticalAlignment="Center">
                 <Image Source="Resources\1000915.png" Width="80"/>
-                <TextBlock Text="Password Manger"
+                <TextBlock Margin="10" Text="Password Manager"
                            FontWeight="Light"
                            FontFamily="helvetica"
                            FontSize="22"
@@ -79,7 +79,7 @@
                         x:Name="Username"
                         materialDesign:HintAssist.Hint="Username"
                         Margin="63,0,0,0"
-                        Width="230">
+                        Width="250">
                         <TextBox.Text>
                             <Binding
                                  Path="Name"
@@ -87,10 +87,6 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <iconPacks:PackIconMaterial Kind="Account" 
-                                                VerticalAlignment="Center" 
-                                                HorizontalAlignment="Center" 
-                                                Foreground="White"/>
                 </StackPanel>
                 
 
