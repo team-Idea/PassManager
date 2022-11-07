@@ -241,7 +241,7 @@
 
             <Button Command="{Binding SortByFavourites}" HorizontalContentAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Height="40">Favourites</Button>
             <Button HorizontalContentAlignment="Left" Grid.Row="5" Grid.ColumnSpan="2" Margin="5,0,5,5" Height="40" Click="Button_Click_1" >Generate Password</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="6" Grid.ColumnSpan="2" Margin="5" Height="40">Password Health</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="6" Grid.ColumnSpan="2" Margin="5" Height="40" Click="Button_Click_2">Password Health</Button>
             
 
         </Grid>
