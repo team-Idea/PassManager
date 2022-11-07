@@ -5,7 +5,7 @@
         xmlns:viewmodels="clr-namespace:ClientApp.viewModel"
         xmlns:controls="clr-namespace:ClientApp.Controls" xmlns:system="clr-namespace:System;assembly=mscorlib" 
        
-        Title="MainWindow" MinHeight="550" MinWidth="1000" Height="550" Width="1000"
+        Title="MainWindow" MinHeight="750" MinWidth="1350" Height="750" Width="1350"
         AllowsTransparency="True" Background="Transparent"
         WindowStyle="None" ResizeMode="NoResize"
         MouseDown="MainWindow_OnMouseDown">
@@ -139,25 +139,33 @@
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="40"/>
                                 <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Column="0" Grid.Row="1" Content="Name" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
-                            <Label Grid.Column="0" Grid.Row="2" Content="SavedLogin" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
-                            <Label Grid.Column="0" Grid.Row="3" Content="SavedPassword" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
+                            
+                            <Label Foreground="AliceBlue" Grid.Column="0" Grid.Row="1" Content="Name: " HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
+                            <Label Foreground="AliceBlue" Grid.Column="0" Grid.Row="2" Content="SavedLogin: " HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
+                            <Label Foreground="AliceBlue" Grid.Column="0" Grid.Row="3" Content="SavedPassword: " HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
+                            <Label Foreground="AliceBlue" Grid.Column="0" Grid.Row="4" Content="IsFavourite: " HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="16"/>
 
-                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                            <TextBox Foreground="AliceBlue" Grid.Column="1" Grid.Row="1" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                                      ToolTip="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                                      ToolTipService.Placement="MousePoint"  
                                      VerticalAlignment="Top" FontSize="16" Padding="3"  IsReadOnly="False" Height="31"/>
-                            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SavedLogin, UpdateSourceTrigger=PropertyChanged}" 
+                            <TextBox Foreground="AliceBlue" Grid.Column="1" Grid.Row="2" Text="{Binding SavedLogin, UpdateSourceTrigger=PropertyChanged}" 
                                      ToolTip="{Binding SavedLogin, UpdateSourceTrigger=PropertyChanged}" 
                                      ToolTipService.Placement="MousePoint" Height="31"   
                                      VerticalAlignment="Top" FontSize="16" Padding="3"  IsReadOnly="False"/>
-                            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SavedPassword, UpdateSourceTrigger=PropertyChanged}" 
+                            <TextBox Foreground="AliceBlue" Grid.Column="1" Grid.Row="3" Text="{Binding SavedPassword, UpdateSourceTrigger=PropertyChanged}" 
                                      ToolTip="{Binding SavedPassword, UpdateSourceTrigger=PropertyChanged}" 
                                      ToolTipService.Placement="MousePoint" Height="31"   
                                      VerticalAlignment="Top" FontSize="16" Padding="3"  IsReadOnly="False"/>
-
+                            
+                            <CheckBox Foreground="AliceBlue" Grid.Column="1" Grid.Row="4" IsChecked="{Binding IsFavourite, UpdateSourceTrigger=PropertyChanged}" 
+                                     ToolTip="{Binding IsFavourite, UpdateSourceTrigger=PropertyChanged}" 
+                                     ToolTipService.Placement="MousePoint" Height="31"   
+                                     FontSize="16" Padding="3" HorizontalAlignment="Left"/>
+                            
                             <Button Grid.Column="3" Grid.Row="1" Command="{Binding CopyDetailsCommand}" Content="Copy" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="69" Height="31" FontSize="16">
                                 <Button.CommandParameter>
                                     <system:Int32>0</system:Int32>
@@ -221,16 +229,19 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0" Grid.Row="0" FontSize="20" Foreground="AliceBlue" Grid.ColumnSpan="2">Security Tools</TextBlock>
 
-            <Button Command="{Binding AutoShowContentPanelCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" Height="40">Edit Account</Button>
-            <Button Command="{Binding DeleteAccountCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2" Height="40">Delete Account</Button>
+            <Button Command="{Binding ShowLoginsCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="1" Grid.ColumnSpan="2" Height="40">All Logins</Button>
+            
+            <Button Command="{Binding AutoShowContentPanelCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="2" Grid.ColumnSpan="2" Height="40">Edit Login</Button>
+            <Button Command="{Binding DeleteAccountCommand}" Margin="5" HorizontalContentAlignment="Left" Grid.Row="3" Grid.ColumnSpan="2" Height="40">Delete Login</Button>
 
-            <Button Command="{Binding SortByFavourites}" HorizontalContentAlignment="Left" Grid.Row="3" Grid.ColumnSpan="2" Margin="5" Height="40">Favourites</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Margin="5,0,5,5" Height="40" Click="Button_Click_1" >Generate Password</Button>
-            <Button HorizontalContentAlignment="Left" Grid.Row="5" Grid.ColumnSpan="2" Margin="5" Height="40">Password Health</Button>
+            <Button Command="{Binding SortByFavourites}" HorizontalContentAlignment="Left" Grid.Row="4" Grid.ColumnSpan="2" Margin="5" Height="40">Favourites</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="5" Grid.ColumnSpan="2" Margin="5,0,5,5" Height="40" Click="Button_Click_1" >Generate Password</Button>
+            <Button HorizontalContentAlignment="Left" Grid.Row="6" Grid.ColumnSpan="2" Margin="5" Height="40">Password Health</Button>
             
 
         </Grid>
